@@ -30,6 +30,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # for user authentication 
 gem 'devise'
+
+# for fake seeds
+gem 'faker'
+
 # for authorisation
 gem 'pundit'
 

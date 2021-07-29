@@ -7,12 +7,42 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Clearing database from Users and Gift requests"
-# Message.destroy_all
+User.destroy_all
+Project.destroy_all
 # Chatroom.destroy_all
 # GiftRequest.destroy_all
 # Chatroom.destroy_all
-# User.destroy_all
-
 
 puts "---Creating seeds"
 puts "..."
+
+jana = User.create(
+    first_name: "Jana",
+    last_name: "Moudra",
+    email: "jana@proman.com",
+    password: "123456"
+)
+
+tomas = User.create(
+    first_name: "Tomas",
+    last_name: "Jukin",
+    email: "tomas@proman.com",
+    password: "123456"
+)
+
+vojtech = User.create(
+    first_name: "Vojtech",
+    last_name: "Matous",
+    email: "vojtech@proman.com",
+    password: "123456"
+)
+
+50.times do 
+    Project.create(
+        title: Faker::Company.name,
+        user_id: [jana, tomas, vojtech].sample.id,
+        position: rand(100)
+    )
+end
+
+puts "Done creating seeds!"
