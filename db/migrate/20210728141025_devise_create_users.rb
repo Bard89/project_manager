@@ -5,6 +5,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
+      # password is stored on heroku in my case, then i don't wanna store unencrypted password in the database
+      # even though heroku is pretty safe, I don't wanna do it, most users reuse the same password ... 
+        # then it's a security risk
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
