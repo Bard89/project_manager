@@ -11,8 +11,6 @@ class ProjectsController < ApplicationController
 
     def new
     end
-    
-    end
 
     def create
         # @object = Object.new(params[:object])
@@ -26,7 +24,6 @@ class ProjectsController < ApplicationController
     end
     
     def edit
-    
     end
 
     def update
