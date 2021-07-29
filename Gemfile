@@ -30,8 +30,12 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # for user authentication 
 gem 'devise'
+
 # for fake seeds
 gem 'faker'
+
+# for authorisation
+gem 'pundit'
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
