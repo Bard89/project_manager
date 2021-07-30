@@ -33,17 +33,29 @@ class ProjectsController < ApplicationController
         # then copy it and add _path to it
         # then check if I have a dynamic value in there -> id
         # I have here, so I put @project there, which for rails is the same as @project.id
+        
+        # we use the redirect when we have no view for the action, cause user has to see soemthing right
         redirect_to project_path(@project)
     end
     
+    # that's just a way to find and be able to see the edit of the project, it's not saving or updating is ASIO
+    
     def edit
-
+        # in the view, there is from the form helpe even can see on the button to have update the project
+        # so we usee the update action to update the project
+        @project = Project.find(params[:id])
     end
 
     def update
+        @project = Project.find(params[:id])
+        @project.update(project_params) # I'll take the value from the form again
+        redirect_to project_path(@project)
     end
 
     def destroy
+        @project = Project.find(params[:id])
+        @project.destroy
+        redirect_to projects_path
     end
     
     private
