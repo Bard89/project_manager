@@ -1,5 +1,4 @@
 <h1>All the projects </h1>
 <% @projects.each do |project| %>
-    <h5><%= project.title%></h5>
-    <p><%= project.position%></p>      
+    <h5><%= project.title%> <%= project.position%></h5>
 <% end %>

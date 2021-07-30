@@ -3,10 +3,12 @@ class ProjectsController < ApplicationController
     
     # to see all the projects
     def index
-        @projects = Project.all
+        @projects = Project.all #tahle vidim vsechny projekty bez ohledu na to za jakyho usera jsem nalogovanej 
     end
 
-    def def show
+    # to show one restaurant
+    def show
+        @project = Project.find(params[:id])
     end
 
     def new
