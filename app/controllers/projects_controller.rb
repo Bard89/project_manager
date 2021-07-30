@@ -33,6 +33,8 @@ class ProjectsController < ApplicationController
         # then copy it and add _path to it
         # then check if I have a dynamic value in there -> id
         # I have here, so I put @project there, which for rails is the same as @project.id
+        
+        # we use the redirect when we have no view for the action, cause user has to see soemthing right
         redirect_to project_path(@project)
     end
     
@@ -51,6 +53,9 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
+        @project = Project.find(params[:id])
+        @project.destroy
+        redirect_to projects_path
     end
     
     private
