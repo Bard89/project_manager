@@ -1,0 +1,20 @@
+<%# for for is a helper, simple form is a gem %>
+<%= form_for @project do |f| %>
+    <%=f.label :title %>
+    <%=f.text_field :title %>
+    <%=f.number_field :position %>    
+    <%=f.submit %>
+<% end %>
+
+<%
+=begin%>
+ #<form action="/projects" method="post">
+#    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+#    <label for="">Title</label>
+#    <input type="text" name="project[title]" value="doing the dishes project">
+#    <label for="">Position</label>
+#    <input type="number" name="project[position]" value="1">
+#    <input type="submit">
+#</form> 
+<%
+=end%>

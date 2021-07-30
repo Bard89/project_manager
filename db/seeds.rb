@@ -37,7 +37,7 @@ vojtech = User.create(
     password: "123456"
 )
 
-50.times do 
+10.times do 
     Project.create(
         title: Faker::Company.name,
         user_id: [jana, tomas, vojtech].sample.id,
