@@ -36,11 +36,18 @@ class ProjectsController < ApplicationController
         redirect_to project_path(@project)
     end
     
+    # that's just a way to find and be able to see the edit of the project, it's not saving or updating is ASIO
+    
     def edit
-
+        # in the view, there is from the form helpe even can see on the button to have update the project
+        # so we usee the update action to update the project
+        @project = Project.find(params[:id])
     end
 
     def update
+        @project = Project.find(params[:id])
+        @project.update(project_params) # I'll take the value from the form again
+        redirect_to project_path(@project)
     end
 
     def destroy
