@@ -1,2 +1,16 @@
+<%
+=begin%>
+  we gonna add link to go back, edit and destroy
+
+  by defauls link_to is a get method, delete is delete method, so I have to specify it
+  the one before path is always the helper, so the first one in the rails routes
+
+  I also wanna ask the user if he wants to delete the project -> data: ...
+<%
+=end%>
+
 <h1>Concrete one project </h1>
-<p><%= @project.title%>   <%= @project.position %></p>   
+<p><%= @project.title%>   <%= @project.position %></p>  
+<%= link_to 'back', projects_path %> 
+<%= link_to 'edit', edit_project_path(@project) %> 
+<%= link_to 'delete', project_path(@project), method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
