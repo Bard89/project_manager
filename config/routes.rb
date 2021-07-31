@@ -20,7 +20,11 @@ Rails.application.routes.draw do
       # member do
       #   get :chef
       # end
-  
+      
+      # we gonna nest it, because I will wanna see it under one task when i click on it
+      # because very time I create a task I want it to be associated woth the project
+      # ASK but maybe I'll also do a rout not nested for the tasks?
+      resources :tasks
     end
 
 end
