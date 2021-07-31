@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
     end
     
     # that's just a way to find and be able to see the edit of the project, it's not saving or updating is ASIO
+    # basically just for the view, so the user can see what he wants to update 
     
     def edit
         # in the view, there is from the form helpe even can see on the button to have update the project

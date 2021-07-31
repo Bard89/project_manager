@@ -1,4 +1,16 @@
+<%
+=begin%>
+ maybe I wanna have a link to the new page in my index page
+ links are similiar to the redirect functionality in principle
+
+ and also to the show page of the project
+ when I don't have to use just the string as a visible link
+<%
+=end%>
+
+
 <h1>All the projects </h1>
+<%= link_to "Create a new project", new_project_path %> 
 <% @projects.each do |project| %>
-    <h5><%= project.title%> <%= project.position%></h5>
+    <h5><%= link_to project.title, project_path(project)%> <%= project.position%></h5>
 <% end %>

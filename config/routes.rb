@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   # we use the resources instead of individually typing the routes ourselves
   # resources :users do # should it be nested?
     resources :projects do # creates the routes for all the crud
+      # if I don't need all the crud action, I can pick just some, with only or except
   end
 end
