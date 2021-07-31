@@ -11,6 +11,9 @@ class ProjectsController < ApplicationController
     # I'll just do the crud for all rpjects not for one specific user here, for practice
     # to see all the projects
     def index
+
+        # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
+        # Project.where(user_id:current_user)
         @projects = Project.all #tahle vidim vsechny projekty bez ohledu na to za jakyho usera jsem nalogovanej 
     end
 
@@ -52,6 +55,7 @@ class ProjectsController < ApplicationController
     def update
         # @project = Project.find(params[:id])
         @project.update(project_params) # I'll take the value from the form again
+        # raise
         redirect_to project_path(@project)
     end
 

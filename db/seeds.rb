@@ -44,15 +44,17 @@ puts "User seed named --> #{vojtech.first_name} <-- created"
 
 
 puts 
-counter = 1
+counter = 0
 10.times do 
     project = Project.create(
         title: Faker::Company.name,
         user_id: [jana, tomas, vojtech].sample.id,
         position: rand(100)
     )
-    puts "Created project seed number --> #{counter} <-- with title --> #{project.title} <--"
+    puts "Created project seed id --> #{project.id} <-- with title --> #{project.title} <--"
     counter += 1
 end
 
+puts
+puts "Total number of project seeds --> #{counter} <--"
 puts "Done creating seeds!"
