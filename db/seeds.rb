@@ -16,12 +16,14 @@ Project.destroy_all
 puts "---Creating seeds"
 puts "..."
 
+Puts
 jana = User.create(
     first_name: "Jana",
     last_name: "Moudra",
     email: "jana@proman.com",
     password: "123456"
 )
+puts "User seed named --> #{jana.first_name} <-- created"
 
 tomas = User.create(
     first_name: "Tomas",
@@ -29,6 +31,8 @@ tomas = User.create(
     email: "tomas@proman.com",
     password: "123456"
 )
+puts "User seed named --> #{tomas.first_name} <-- created"
+
 
 vojtech = User.create(
     first_name: "Vojtech",
@@ -36,7 +40,10 @@ vojtech = User.create(
     email: "vojtech@proman.com",
     password: "123456"
 )
+puts "User seed named --> #{vojtech.first_name} <-- created"
 
+
+puts
 counter = 1
 10.times do 
     project = Project.create(
@@ -44,7 +51,7 @@ counter = 1
         user_id: [jana, tomas, vojtech].sample.id,
         position: rand(100)
     )
-    puts "Created seed number --> #{counter} <-- with title --> #{project.title} <--"
+    puts "Created project seed number --> #{counter} <-- with title --> #{project.title} <--"
     counter += 1
 end
 
