@@ -12,5 +12,5 @@
 <h1>All the projects </h1>
 <%= link_to "Create a new project", new_project_path %> 
 <% @projects.each do |project| %>
-    <h5><%= link_to project.title, project_path(project)%> <%= project.position%></h5>
+    <p><%= link_to project.title, project_path(project)%> <%= project.position%></p>
 <% end %>
