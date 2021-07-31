@@ -1,6 +1,13 @@
-<%= form_for @project do |f| %>
-    <%=f.label :title %>
+<%= simple_form_for @project do |f| %>
+    <%
+=begin%>
+ <%=f.label :title %>
     <%=f.text_field :title %>
-    <%=f.number_field :position %>    
+    <%=f.number_field :position %>     
+<%
+=end%>
+    
+    <%=f.input :title %>
+    <%=f.input :position %>
     <%=f.submit %>
 <% end %>
