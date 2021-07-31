@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+    before_action :find_project, only: [:edit, :update, :show, :destroy] # to be able to use the private method of find_project, so we don't repeat ourselves
+    
     # here we code all the actions for which we created the routes rb
     
     # since I'll see just my projects, and there will be no cooperation between
@@ -14,7 +16,7 @@ class ProjectsController < ApplicationController
 
     # to show one restaurant
     def show
-        @project = Project.find(params[:id])
+        # @project = Project.find(params[:id])
     end
 
     # just need an empty instance just to initialise it
@@ -44,17 +46,17 @@ class ProjectsController < ApplicationController
     def edit
         # in the view, there is from the form helpe even can see on the button to have update the project
         # so we usee the update action to update the project
-        @project = Project.find(params[:id])
+        # @project = Project.find(params[:id])
     end
 
     def update
-        @project = Project.find(params[:id])
+        # @project = Project.find(params[:id])
         @project.update(project_params) # I'll take the value from the form again
         redirect_to project_path(@project)
     end
 
     def destroy
-        @project = Project.find(params[:id])
+        #@project = Project.find(params[:id])
         @project.destroy
         redirect_to projects_path
     end
@@ -66,5 +68,11 @@ class ProjectsController < ApplicationController
         # require mean that I wanna require the key inside, disregard all the other keys
         # inside the permitted key just take the :title and :position, nothing else
         params.require(:project).permit(:title, :position)
+    end
+
+    # don't wanna write the find parmas many times, jsut create a method so we don't repeat ourselves
+    # then i say I run it before some of the actions
+    def find_project
+        @project = Project.find(params[:id])
     end
 end
