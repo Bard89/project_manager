@@ -16,7 +16,7 @@ Project.destroy_all
 puts "---Creating seeds"
 puts "..."
 
-Puts
+puts
 jana = User.create(
     first_name: "Jana",
     last_name: "Moudra",
@@ -43,7 +43,7 @@ vojtech = User.create(
 puts "User seed named --> #{vojtech.first_name} <-- created"
 
 
-puts
+puts 
 counter = 1
 10.times do 
     project = Project.create(
