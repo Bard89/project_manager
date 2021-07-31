@@ -38,11 +38,12 @@ vojtech = User.create(
 )
 
 10.times do 
-    Project.create(
+    project = Project.create(
         title: Faker::Company.name,
         user_id: [jana, tomas, vojtech].sample.id,
         position: rand(100)
     )
+    puts "Created #{project.title}"
 end
 
 puts "Done creating seeds!"
