@@ -37,13 +37,15 @@ vojtech = User.create(
     password: "123456"
 )
 
+counter = 1
 10.times do 
     project = Project.create(
         title: Faker::Company.name,
         user_id: [jana, tomas, vojtech].sample.id,
         position: rand(100)
     )
-    puts "Created #{project.title}"
+    puts "Created seed number --> #{counter} <-- with title --> #{project.title} <--"
+    counter += 1
 end
 
 puts "Done creating seeds!"
