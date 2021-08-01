@@ -6,16 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Clearing database from Users and Gift requests"
+puts "Clearing database from Users and Projects and Tasks"
+# the order matters -> be careful with this -> more here: https://stackoverflow.com/questions/48739646/pgforeignkeyviolation-error-update-or-delete-on-table-xxx-violates-foreign
+Task.destroy_all
 User.destroy_all
 Project.destroy_all
-# Chatroom.destroy_all
-# GiftRequest.destroy_all
-# Chatroom.destroy_all
+
+puts "Dratabase cleared"
+
 
 puts "---Creating seeds"
 puts "..."
-
+counter = 0
 puts
 jana = User.create(
     first_name: "Jana",
@@ -23,6 +25,7 @@ jana = User.create(
     email: "jana@proman.com",
     password: "123456"
 )
+counter += 1
 puts "User seed named --> #{jana.first_name} <-- created"
 
 tomas = User.create(
@@ -31,6 +34,7 @@ tomas = User.create(
     email: "tomas@proman.com",
     password: "123456"
 )
+counter += 1
 puts "User seed named --> #{tomas.first_name} <-- created"
 
 
@@ -40,9 +44,12 @@ vojtech = User.create(
     email: "vojtech@proman.com",
     password: "123456"
 )
+counter += 1
 puts "User seed named --> #{vojtech.first_name} <-- created"
+puts
+puts "Total number of user seeds --> #{counter} <--"
 
-
+puts
 puts 
 counter = 0
 10.times do 
@@ -57,4 +64,26 @@ end
 
 puts
 puts "Total number of project seeds --> #{counter} <--"
+
+
+puts
+puts
+counter = 0
+50.times do 
+    task = Task.create(  #won't be created for some reason
+        title: Faker::Beer.name,
+        description: Faker::GreekPhilosophers.quote,
+        is_done: [false, true].sample, # here is the problem, seed won't get created with is_done set to false -> because of the wrongly set validation, be careful with that boi
+        # attachement: file .... 
+        user_id: [jana, tomas, vojtech].sample.id,
+        project_id: Project.all.sample.id
+    )
+    puts "Created taks seed id --> #{task.id} <-- with title --> #{task.title} <--"
+    counter += 1
+end
+puts
+puts "Total number of task seeds --> #{counter} <--"
+
+puts
+puts "..."
 puts "Done creating seeds!"
