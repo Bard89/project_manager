@@ -2,7 +2,7 @@ class TasksController < ApplicationController
     before_action :find_project, only: [:index, :new, :create]
     before_action :find_task, only: [:show] # if only once, maybe it can be directly in the action once ... 
     def index
-        # r@tasks = Task.where(@project.)
+        @tasks = Task.where(user_id: current_user)
     end
 
     def show
@@ -25,9 +25,7 @@ class TasksController < ApplicationController
         else
           flash[:error] = "Something went wrong"
           render 'new'
-          
         end
-        
     end
         
     private
