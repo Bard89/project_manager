@@ -1,0 +1,12 @@
+
+<%
+=begin%>
+ this is how I generate the form for nested routes [@project, @task]
+<%
+=end%>
+<%= simple_form_for [@project, @task] do |f| %>
+    <%=f.input :title %>
+    <%=f.input :description %>
+    <%=f.input :is_done %>
+    <%=f.submit class: 'btn btn-primary'%>
+<% end %>

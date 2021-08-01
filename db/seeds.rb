@@ -54,7 +54,7 @@ puts
 counter = 0
 10.times do 
     project = Project.create(
-        title: Faker::Company.name,
+        title: "Project #{Faker::Company.name}",
         user_id: [jana, tomas, vojtech].sample.id,
         position: rand(100)
     )
@@ -71,8 +71,8 @@ puts
 counter = 0
 50.times do 
     task = Task.create(  #won't be created for some reason
-        title: Faker::Beer.name,
-        description: Faker::GreekPhilosophers.quote,
+        title: "task #{Faker::Beer.name} ",
+        description: "task-description #{Faker::GreekPhilosophers.quote}",
         is_done: [false, true].sample, # here is the problem, seed won't get created with is_done set to false -> because of the wrongly set validation, be careful with that boi
         # attachement: file .... 
         user_id: [jana, tomas, vojtech].sample.id,
