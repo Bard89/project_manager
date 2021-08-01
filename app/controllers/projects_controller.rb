@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
     # basically just for the view, so the user can see what he wants to update 
     
     def edit
-        # in the view, there is from the form helpe even can see on the button to have update the project
+        # in the view, there is from the form helper even can see on the button to have update the project
         # so we usee the update action to update the project
         # @project = Project.find(params[:id])
     end
@@ -55,7 +55,6 @@ class ProjectsController < ApplicationController
     def update
         # @project = Project.find(params[:id])
         @project.update(project_params) # I'll take the value from the form again
-        # raise
         redirect_to project_path(@project)
     end
 

@@ -1,2 +1,20 @@
-<h1>Concrete one task </h1>
-<p><%= @task.title%>   <%= @task.description %> <%= @task.is_done %></p>  
+<h1>Concrete one task of one concrete project </h1>
+<p>
+    <strong>Task title:</strong>
+    <%= @task.title%> 
+</p>
+<p>  
+    <strong>Description: </strong>
+    <%= @task.description %>
+</p>  
+
+<p>  
+    <strong>Is the task done? : </strong>
+    <%= @task.is_done %>
+</p> 
+
+
+<%= link_to 'back', project_tasks_path %> 
+<br>
+<%= link_to 'edit', edit_project_task_path %> 
+<br>

@@ -24,7 +24,15 @@ Rails.application.routes.draw do
       # we gonna nest it, because I will wanna see it under one task when i click on it
       # because very time I create a task I want it to be associated woth the project
       # ASK but maybe I'll also do a rout not nested for the tasks?
-      resources :tasks
+
+      # rule of thumb -> only nest things that don't have their own id
+        # nest [: index, :new, :create]
+        # don't nest [:show, :edit, :update, :destroy]
+      resources :tasks 
     end
+    # outside of nesting, because I don't need an id of the project
+    # the task exists already, we just destroy it, we don't wanna think about the project anymore
+    # that would be redundant
+    resources :tasks, only: [:destroy]
 
 end

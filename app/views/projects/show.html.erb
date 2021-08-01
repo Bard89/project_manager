@@ -10,7 +10,29 @@
 =end%>
 
 <h1>Concrete one project </h1>
-<p><%= @project.title%>   <%= @project.position %></p>  
+<p>
+    <strong>Project title:</strong>
+    <%= @project.title%> 
+</p>
+<p>  
+    <strong>Position: </strong>
+    <%= @project.position %>
+</p>  
+
+<p>
+    <% @project.tasks.each do |task|%>
+    <br>
+    <p><%= task.title%></p>
+    <p><%= task.description%></p>
+    <br>
+    <% end %>
+</p>
+
+
 <%= link_to 'back', projects_path %> 
+<br>
 <%= link_to 'edit', edit_project_path(@project) %> 
+<br>
 <%= link_to 'delete', project_path(@project), method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+<br>
+<%= link_to 'new task', new_project_task_path(@project) %>
