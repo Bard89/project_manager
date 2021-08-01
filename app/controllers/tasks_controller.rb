@@ -20,7 +20,6 @@ class TasksController < ApplicationController
         @task.user = current_user
         if @task.save
           flash[:success] = "Task successfully created"
-          #redirect_to @task
           redirect_to project_task_path(@project, @task) # if I have 2 dynamic values/ids, then I put it in like this
         else
           flash[:error] = "Something went wrong"
