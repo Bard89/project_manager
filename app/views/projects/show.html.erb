@@ -13,19 +13,26 @@
 <p>
     <strong>Project title:</strong>
     <%= @project.title%> 
+    <%= link_to 'see all project tasks in detail', project_tasks_path(@project), class: "btn btn-primary" %>
 </p>
-<p>  
+<%
+=begin%>
+ <p>  
     <strong>Position: </strong>
     <%= @project.position %>
-</p>  
+</p>   
+<%
+=end%>
 
 <p>
     <strong>Tasks of my project:</strong>
     <% @project.tasks.each do |task|%>
-    <br>
     <p><strong>Task: </strong> <%= task.title%></p>
-    <p><strong>Task description: </strong> <%= task.description%></p>
-    <br>
+    <%
+=begin%>
+ <p><strong>Task description: </strong> <%= task.description%></p> 
+<%
+=end%>
     <% end %>
 </p>
 
