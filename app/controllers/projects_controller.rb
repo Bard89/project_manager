@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     def dashboard # index changed to dashboard, all the projects of logged in user
         # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
         # Project.where(user_id:current_user)
-        @projects = Project.where(user_id:current_user).order(position: :desc) # projekty radim podle navoleny pozice
+        @projects = Project.where(user_id:current_user).order(position: :asc) # projekty radim podle navoleny pozice
     end
 
     # to show one restaurant

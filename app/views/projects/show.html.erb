@@ -23,14 +23,14 @@
     <strong>Tasks of my project:</strong>
     <% @project.tasks.each do |task|%>
     <br>
-    <p><%= task.title%></p>
-    <p><%= task.description%></p>
+    <p><strong>Task: </strong> <%= task.title%></p>
+    <p><strong>Task description: </strong> <%= task.description%></p>
     <br>
     <% end %>
 </p>
 
 
-<%= link_to 'back', dashboard_path, class: "btn btn-primary" %> 
-<%= link_to 'edit', edit_project_path(@project), class: "btn btn-primary" %> 
-<%= link_to 'delete', project_path(@project), class: "btn btn-primary", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
-<%= link_to 'new task', new_project_task_path(@project), class: "btn btn-primary" %>
+<%= link_to 'back to projects', dashboard_path, class: "btn btn-primary" %> 
+<%= link_to 'edit project', edit_project_path(@project), class: "btn btn-primary" %> 
+<%= link_to 'delete project', project_path(@project), class: "btn btn-primary", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+<%= link_to 'add a new task', new_project_task_path(@project), class: "btn btn-primary" %>
