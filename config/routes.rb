@@ -41,5 +41,7 @@ Rails.application.routes.draw do
     # the task exists already, we just destroy it, we don't wanna think about the project anymore
     # that would be redundant
     resources :tasks, only: [:destroy]
+    resources :profiles, only: [:show]
+
 
 end
