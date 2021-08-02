@@ -70,13 +70,14 @@ puts
 puts
 counter = 0
 150.times do 
+    user_id_for_project = [jana, tomas, vojtech].sample.id
     task = Task.create(  #won't be created for some reason
         title: "task #{Faker::Beer.name} ",
         description: "task-description #{Faker::GreekPhilosophers.quote}",
         is_done: [false, true].sample, # here is the problem, seed won't get created with is_done set to false -> because of the wrongly set validation, be careful with that boi
         # attachement: file .... 
-        user_id: [jana, tomas, vojtech].sample.id,
-        project_id: Project.all.sample.id
+        user_id: user_id_for_project,
+        project_id: Project.where(user_id: user_id_for_project).sample.id
     )
     puts "Created taks seed id --> #{task.id} <-- with title --> #{task.title} <--"
     counter += 1

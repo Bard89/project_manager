@@ -3,6 +3,7 @@ class TasksController < ApplicationController
     before_action :find_task, only: [:show, :edit, :update, :destroy] 
     
     def index # index for all the tasks of one project
+        # raise
         @tasks = Task.where(user_id: current_user, project_id: @project.id)
     end
 
