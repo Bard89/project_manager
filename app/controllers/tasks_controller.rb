@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-    before_action :find_project, only: [:index, :new, :create]
+    before_action :find_project, only: [:index, :new, :create, :edit]
     before_action :find_task, only: [:show, :edit, :update, :destroy] 
     
     def index # index for all the tasks of one project
@@ -30,12 +30,19 @@ class TasksController < ApplicationController
         end
     end
     
-    def edit
+    def edits
+        #find_project by tu mel byt, pokud, bych ho pouzil v simple_form
+        # v simple_form ale pouzivam @task.project, proto to tu nepotrebuji, ale pozor
+        # tohle muze breakovat !!!
+
+        #when I moved the fomr to the _form, then it's for new and edit action, then i need the @project
+        # cause in the new action is no @task.project yet
     end
 
     def update
         @task.update(task_params)
-        redirect_to project_task_path(@task)
+        # redirect_to project_task_path(@task.project, @task)
+        redirect_to project_task_path(@task.project, @task)
     end
 
     def destroy
