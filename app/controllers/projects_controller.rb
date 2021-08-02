@@ -11,10 +11,9 @@ class ProjectsController < ApplicationController
     # I'll just do the crud for all rpjects not for one specific user here, for practice
     # to see all the projects
     def dashboard # index changed to dashboard, all the projects of logged in user
-
         # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
         # Project.where(user_id:current_user)
-        @projects = Project.all #tahle vidim vsechny projekty bez ohledu na to za jakyho usera jsem nalogovanej 
+        @projects = Project.where(user_id:current_user).order(position: :desc) # projekty radim podle navoleny pozice
     end
 
     # to show one restaurant
