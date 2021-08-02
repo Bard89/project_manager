@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
     # I'll just do the crud for all rpjects not for one specific user here, for practice
     # to see all the projects
-    def index
+    def dashboard # index changed to dashboard, all the projects of logged in user
 
         # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
         # Project.where(user_id:current_user)
