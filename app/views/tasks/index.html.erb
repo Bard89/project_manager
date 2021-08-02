@@ -1,4 +1,12 @@
-<h1>All the tasks of one concrete project </h1>
+<h1>All the tasks of one concrete project</h1>
+<h2>Project title: <%= @project.title%>  </h2>
 <% @tasks.each do |task| %>
-    <p><%= task.title%>   <%= task.description %> <%= task.is_done %></p>
+    <p>
+        <strong>Task title: </strong> <%=link_to task.title, project_task_path(@project, task)%>
+        <%= link_to 'edit task', edit_project_task_path(@project, task), class: "btn btn-primary btn-sm" %> 
+        <br>
+        <strong>Task description: </strong><%= task.description %> 
+        <br>
+        <strong>Task status: </strong><%= task.is_done %>
+    </p>
 <% end %>

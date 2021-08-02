@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://image.freepik.com/free-vector/illustration-folder-icon_53876-5845.jpg" %>
     <% end %>
 
@@ -11,9 +11,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
+        <%
+=begin%>
+ <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
-        </li>
+        </li> 
+<%
+=end%>
         <li class="nav-item">
           <%
 =begin%>

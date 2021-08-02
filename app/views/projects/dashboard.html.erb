@@ -9,8 +9,17 @@
 =end%>
 
 
-<h1>All the projects </h1>
-<%= link_to "Create a new project", new_project_path %> 
+
+<h1>My projects </h1>
+ <%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> 
+<br>
+<br>
+
 <% @projects.each do |project| %>
-    <p><%= link_to project.title, project_path(project)%> <%= project.position%></p>
+    <p>
+        <strong>Project title: </strong><%= link_to project.title, project_path(project)%>
+        <strong>Position: </strong> <%= project.position%>
+        <%= link_to 'delete project', project_path(project), class: "btn btn-primary", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+    </p>
 <% end %>
+
