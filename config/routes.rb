@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: 'pages#home'
+
+  root to: 'pages#home' # I put here what the user sees before the user logs in
+
+  authenticated :user do
+    root 'projects#dashboard', as: :authenticated_root # here will be what the user sees after logging in
+  end
+
+  get '/dashboard', to: 'projects#dashboard' # I need to crete the path I'm gonna use above, the root then makes it without any suffix so to say
 
   # we need to define the routes for CRUD (and other) actions here
   # we use the resources instead of individually typing the routes ourselves
