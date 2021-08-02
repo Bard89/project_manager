@@ -14,10 +14,7 @@
 </p> 
 
 
-<%= link_to 'back', project_tasks_path %> 
-<br>
-<%= link_to 'edit task', edit_project_task_path %> 
-<br>
-<%= link_to 'delete task', task_path(@task), method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
-<br>
-<%= link_to 'new task', new_project_task_path %>
+<%= link_to 'back', project_tasks_path, class: "btn btn-primary" %> 
+<%= link_to 'edit task', edit_project_task_path, class: "btn btn-primary" %> 
+<%= link_to 'delete task', task_path(@task), class: "btn btn-primary", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+<%= link_to 'new task', new_project_task_path, class: "btn btn-primary" %>
