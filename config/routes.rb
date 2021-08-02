@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root to: 'pages#home' # I put here what the user sees before the user logs in
-
-  authenticated :user do
+  authenticated :user do # mind the order for the root, because if first gets the root to root to: 'pages#home', then authenticated root wont even be executed
     root 'projects#dashboard', as: :authenticated_root # here will be what the user sees after logging in
   end
+
+  root to: 'pages#home' # I put here what the user sees before the user logs in
 
   get '/dashboard', to: 'projects#dashboard' # I need to crete the path I'm gonna use above, the root then makes it without any suffix so to say
 
