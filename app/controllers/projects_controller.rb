@@ -39,7 +39,13 @@ class ProjectsController < ApplicationController
         # I have here, so I put @project there, which for rails is the same as @project.id
         
         # we use the redirect when we have no view for the action, cause user has to see soemthing right
-        redirect_to project_path(@project)
+        if @project.save
+            flash[:success] = "Project successfully created"
+            redirect_to project_path(@project)
+          else
+            flash[:error] = "Something went wrong"
+            render 'new' 
+          end
     end
     
     # that's just a way to find and be able to see the edit of the project, it's not saving or updating is ASIO
