@@ -29,10 +29,7 @@
 </p>
 
 
-<%= link_to 'back', projects_path %> 
-<br>
-<%= link_to 'edit', edit_project_path(@project) %> 
-<br>
-<%= link_to 'delete', project_path(@project), method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
-<br>
-<%= link_to 'new task', new_project_task_path(@project) %>
+<%= link_to 'back', dashboard_path, class: "btn btn-primary" %> 
+<%= link_to 'edit', edit_project_path(@project), class: "btn btn-primary" %> 
+<%= link_to 'delete', project_path(@project), class: "btn btn-primary", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+<%= link_to 'new task', new_project_task_path(@project), class: "btn btn-primary" %>

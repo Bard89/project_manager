@@ -9,8 +9,12 @@
 =end%>
 
 
-<h1>All the projects </h1>
-<%= link_to "Create a new project", new_project_path %> 
+<h1>My projects </h1>
+<%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> 
+<br>
+<br>
+
 <% @projects.each do |project| %>
     <p><%= link_to project.title, project_path(project)%> <%= project.position%></p>
 <% end %>
+

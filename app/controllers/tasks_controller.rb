@@ -2,7 +2,7 @@ class TasksController < ApplicationController
     before_action :find_project, only: [:index, :new, :create, :edit]
     before_action :find_task, only: [:show, :edit, :update, :destroy] 
     
-    def  # index for all the tasks of one project
+    def index # index for all the tasks of one project
         @tasks = Task.where(user_id: current_user, project_id: @project.id)
     end
 

@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
     def destroy
         #@project = Project.find(params[:id])
         @project.destroy
-        redirect_to projects_path
+        redirect_to dashboard_path
     end
     
     private
