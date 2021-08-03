@@ -14,7 +14,6 @@ Project.destroy_all
 
 puts "Dratabase cleared"
 
-
 puts "---Creating seeds"
 puts "..."
 counter = 0
@@ -52,7 +51,7 @@ puts "User seed named --> #{vojtech.first_name} <-- created"
 puts
 puts "Total number of user seeds --> #{counter} <--"
 
-# see for the admin
+# next as the admin, with great power comes great responsibility
 zeus = User.create(
     first_name: "Zeus",
     last_name: "Admin",
@@ -80,7 +79,6 @@ end
 
 puts
 puts "Total number of project seeds --> #{counter} <--"
-
 
 puts
 puts

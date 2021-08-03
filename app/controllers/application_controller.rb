@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   # Pundit: white-list approach
   # whitelist approach -> every action is denied unless I explicitelly allow it
-   # in other words, no action is allowed unlesss explicitly allowed
+    # in other words, no action is allowed unlesss explicitly allowed
   # also after every action i call method verify_authorised, I still call pundit, even when i forget
   # it makes sure the pundit is called for every action except for the index one 
   

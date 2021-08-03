@@ -1,11 +1,11 @@
 <%
 =begin%>
-  we gonna add link to go back, edit and destroy
+    we gonna add link to go back, edit and destroy
 
-  by defauls link_to is a get method, delete is delete method, so I have to specify it
-  the one before path is always the helper, so the first one in the rails routes
+    by defauls link_to is a get method, delete is delete method, so I have to specify it
+    the one before path is always the helper, so the first one in the rails routes
 
-  I also wanna ask the user if he wants to delete the project -> data: ...
+    I also wanna ask the user if he wants to delete the project -> data: ...
 <%
 =end%>
 
@@ -18,11 +18,11 @@
 </p>
 <%
 =begin%>
- <p>  
-    <strong>Position: </strong>
-    <%= @project.position %>
-</p>   
-<%
+    <p>  
+        <strong>Position: </strong>
+        <%= @project.position %>
+    </p>   
+    <%
 =end%>
 
 <p>
@@ -33,8 +33,8 @@
     <p><strong>Task: </strong> <%= task.title%></p>
     <%
 =begin%>
- <p><strong>Task description: </strong> <%= task.description%></p> 
-<%
+    <p><strong>Task description: </strong> <%= task.description%></p> 
+    <%
 =end%>
     <% end %>
 </p>
