@@ -12,4 +12,31 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name])
   end
+
+  # pundit (authorisation)
+  include Pundit
+
+  # Pundit: white-list approach
+  # whitelist approach -> every action is denied unless I explicitelly allow it
+  # also after every action i call method verify_authorised, I still call pundit, even when i forget
+  # it makes sure the pundit is called for every action except for the index one 
+  
+  # applies to every action, except index action 
+  after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+
+
+  # Uncomment when you *really understand* Pundit!
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # def user_not_authorized
+  #   flash[:alert] = "You are not authorized to perform this action."
+  #   redirect_to(root_path)
+  # end
+
+  private
+  # skip pundit only when I am in the device controller (user that needs to sign up)
+  # or when i'm in the admin or pages controller
+  def skip_pundit?
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
 end

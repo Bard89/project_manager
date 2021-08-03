@@ -6,6 +6,7 @@ class ApplicationPolicy
     @record = record
   end
 
+  # all of these acions will return a boolean
   def index?
     false
   end
