@@ -14,7 +14,6 @@ Project.destroy_all
 
 puts "Dratabase cleared"
 
-
 puts "---Creating seeds"
 puts "..."
 counter = 0
@@ -23,7 +22,8 @@ jana = User.create(
     first_name: "Jana",
     last_name: "Moudra",
     email: "jana@proman.com",
-    password: "123456"
+    password: "123456",
+    admin: false
 )
 counter += 1
 puts "User seed named --> #{jana.first_name} <-- created"
@@ -32,7 +32,8 @@ tomas = User.create(
     first_name: "Tomas",
     last_name: "Jukin",
     email: "tomas@proman.com",
-    password: "123456"
+    password: "123456",
+    admin: false
 )
 counter += 1
 puts "User seed named --> #{tomas.first_name} <-- created"
@@ -42,7 +43,21 @@ vojtech = User.create(
     first_name: "Vojtech",
     last_name: "Matous",
     email: "vojtech@proman.com",
-    password: "123456"
+    password: "123456",
+    admin: false
+)
+counter += 1
+puts "User seed named --> #{vojtech.first_name} <-- created"
+puts
+puts "Total number of user seeds --> #{counter} <--"
+
+# next as the admin, with great power comes great responsibility
+zeus = User.create(
+    first_name: "Zeus",
+    last_name: "Admin",
+    email: "zeus@proman.com",
+    password: "123456",
+    admin: true
 )
 counter += 1
 puts "User seed named --> #{vojtech.first_name} <-- created"
@@ -52,10 +67,10 @@ puts "Total number of user seeds --> #{counter} <--"
 puts
 puts 
 counter = 0
-30.times do 
+300.times do 
     project = Project.create(
         title: "Project #{Faker::Company.name}",
-        user_id: [jana, tomas, vojtech].sample.id,
+        user_id: [jana, tomas, vojtech, zeus].sample.id,
         position: rand(100)
     )
     puts "Created project seed id --> #{project.id} <-- with title --> #{project.title} <--"
@@ -65,12 +80,11 @@ end
 puts
 puts "Total number of project seeds --> #{counter} <--"
 
-
 puts
 puts
 counter = 0
-150.times do 
-    user_id_for_project = [jana, tomas, vojtech].sample.id
+1000.times do 
+    user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
     task = Task.create(  #won't be created for some reason
         title: "task #{Faker::Beer.name} ",
         description: "task-description #{Faker::GreekPhilosophers.quote}",

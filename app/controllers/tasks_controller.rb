@@ -3,18 +3,20 @@ class TasksController < ApplicationController
     before_action :find_task, only: [:show, :edit, :update, :destroy] 
     
     def index # index for all the tasks of one project
-        @tasks = Task.where(user_id: current_user, project_id: @project.id)
+        #@tasks = Task.where(user_id: current_user, project_id: @project.id)
+        @tasks = policy_scope(Task.where(project_id: @project.id)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
     end
 
     def show
         # here is z.B. the question of authorisation or so, user could go to whichever project he wishes
-        @task = Task.find(params[:id])
+        #@task = Task.find(params[:id])
         # bellow is not suitable here, because I wanna show just one task -. I need authorisation
         #@tasks = Task.where(user_id: current_user, project_id: @project.id, id:params[:id])
     end
 
     def new
         @task = Task.new
+        authorize @task
     end
 
     def create
@@ -22,14 +24,15 @@ class TasksController < ApplicationController
         # bellow -> it says that the project of the task is project that I have acess to right now, so the association/connection is created between task and a project
         @task.project = @project # since task belong to project, I have to say this, so it's associated woth a project always
         @task.user = current_user
+        authorize @task
         # the if else statement basically does for us that when we don't pass the validations
         # the user get another chance to fix that, to put it there again
         if @task.save # returns true or false
-          flash[:success] = "Task successfully created"
-          redirect_to project_task_path(@project, @task) # if I have 2 dynamic values/ids, then I put it in like this
+            flash[:success] = "Task successfully created"
+            redirect_to project_task_path(@project, @task) # if I have 2 dynamic values/ids, then I put it in like this
         else
-          flash[:error] = "Something went wrong"
-          render 'new' # we display the template of the new page, we display what failed to save, simple_form handles that
+            flash[:error] = "Something went wrong"
+            render 'new' # we display the template of the new page, we display what failed to save, simple_form handles that
         end
     end
     
@@ -50,7 +53,7 @@ class TasksController < ApplicationController
 
     def destroy
         @task.destroy
-        redirect_to project_path(@task.project)
+        redirect_to project_tasks_path(@task.project)
     end
     
     private
@@ -60,6 +63,7 @@ class TasksController < ApplicationController
 
     def find_task
         @task = Task.find(params[:id])
+        authorize @task
     end
 
     def task_params

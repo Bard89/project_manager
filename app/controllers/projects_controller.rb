@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-    before_action :find_project, only: [:edit, :update, :show, :destroy] # to be able to use the private method of find_project, so we don't repeat ourselves
+    before_action :find_project, only: [:show, :edit, :update, :destroy] # to be able to use the private method of find_project, so we don't repeat ourselves
     
     # here we code all the actions for which we created the routes rb
     
@@ -13,7 +13,14 @@ class ProjectsController < ApplicationController
     def dashboard # index changed to dashboard, all the projects of logged in user
         # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
         # Project.where(user_id:current_user)
-        @projects = Project.where(user_id:current_user).order(position: :asc) # projekty radim podle navoleny pozice
+
+        # projekty radim podle navoleny pozice# tohle potom udelam pres pundit
+        
+        # here we authorise the @projects instance, and then in the project_policy.rb we say which users should be able to see the @projects
+        #authorize @projects #it's different to all of the other actions, because I have authorised not one action but all actions
+        # so we use
+        @projects = policy_scope(Project) # will look inside of our project_policy.rb and will look to the scope in the beginning
+        # in the project_policy added dashboard aside from index
     end
 
     # to show one restaurant
@@ -24,6 +31,7 @@ class ProjectsController < ApplicationController
     # just need an empty instance just to initialise it
     def new
         @project = Project.new
+        authorize @project
     end
 
     def create
@@ -32,7 +40,7 @@ class ProjectsController < ApplicationController
         # we fix it with strong params in the private method at the bottom of the actions
         @project = Project.new(project_params)
         @project.user_id = current_user.id # need to specify the id, is not authomatic here whoat?
-        @project.save
+        authorize @project
         # for the redirect I go to my roots in terminal and check the prefix
         # then copy it and add _path to it
         # then check if I have a dynamic value in there -> id
@@ -42,10 +50,10 @@ class ProjectsController < ApplicationController
         if @project.save
             flash[:success] = "Project successfully created"
             redirect_to project_path(@project)
-          else
+        else
             flash[:error] = "Something went wrong"
             render 'new' 
-          end
+        end
     end
     
     # that's just a way to find and be able to see the edit of the project, it's not saving or updating is ASIO
@@ -82,5 +90,6 @@ class ProjectsController < ApplicationController
     # then i say I run it before some of the actions
     def find_project
         @project = Project.find(params[:id])
+        authorize @project # I put it here so I don't have to put it in every method one by one
     end
 end
