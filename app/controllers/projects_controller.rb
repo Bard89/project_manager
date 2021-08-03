@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
         # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
         # Project.where(user_id:current_user)
 
-        # @projects = Project.where(user_id:current_user).order(position: :asc) # projekty radim podle navoleny pozice# tohle potom udelam pres pundit
+        # projekty radim podle navoleny pozice# tohle potom udelam pres pundit
         
         # here we authorise the @projects instance, and then in the project_policy.rb we say which users should be able to see the @projects
         #authorize @projects #it's different to all of the other actions, because I have authorised not one action but all actions
@@ -50,10 +50,10 @@ class ProjectsController < ApplicationController
         if @project.save
             flash[:success] = "Project successfully created"
             redirect_to project_path(@project)
-          else
+        else
             flash[:error] = "Something went wrong"
             render 'new' 
-          end
+        end
     end
     
     # that's just a way to find and be able to see the edit of the project, it's not saving or updating is ASIO

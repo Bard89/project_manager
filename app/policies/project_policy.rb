@@ -3,7 +3,7 @@ class ProjectPolicy < ApplicationPolicy
     def resolve # for index method (dashboard for this app)
       #scope.all # means the same (for the Project) as Project.all -> it says all of the Projects to be displayed to the user
       # for the index (here dashboadr method)
-      scope.where(user_id: user).order(position: :asc)
+      scope.where(user_id: user).order(position: :asc) # don't have to do user_id: user.id, i guess it takes the id parameter fro mthe user on its own
     end
   end
 
@@ -17,7 +17,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.user == user
   end
 
   # but for example edit shouldn't nbe true by default
@@ -37,11 +37,11 @@ class ProjectPolicy < ApplicationPolicy
   # end
 
   def update?
-    record.user_id == user.id
+    record.user == user
   end
 
   def destroy?
-    record.user_id == user.id
+    record.user == user
   end
 
 
