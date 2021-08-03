@@ -1,12 +1,8 @@
 class TaskPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user_id: user) # unfortunatelly I can't inser # Task.where(project_id: @project.id # here
     end
-  end
-
-  def index?
-    true
   end
 
   def create?
@@ -14,18 +10,14 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def show?
-    true
-  end
-
-  def edit?
-    true
+    record.user == user
   end
 
   def update?
-    true
+    record.user == user
   end
 
   def destroy?
-    true
+    record.user == user
   end
 end

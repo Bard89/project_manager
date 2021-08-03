@@ -3,8 +3,8 @@ class TasksController < ApplicationController
     before_action :find_task, only: [:show, :edit, :update, :destroy] 
     
     def index # index for all the tasks of one project
-        @tasks = Task.where(user_id: current_user, project_id: @project.id)
-        authorize @tasks
+        #@tasks = Task.where(user_id: current_user, project_id: @project.id)
+        @tasks = policy_scope(Task.where(project_id: @project.id)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
     end
 
     def show
@@ -16,6 +16,7 @@ class TasksController < ApplicationController
 
     def new
         @task = Task.new
+        authorize @task
     end
 
     def create
@@ -23,6 +24,7 @@ class TasksController < ApplicationController
         # bellow -> it says that the project of the task is project that I have acess to right now, so the association/connection is created between task and a project
         @task.project = @project # since task belong to project, I have to say this, so it's associated woth a project always
         @task.user = current_user
+        authorize @task
         # the if else statement basically does for us that when we don't pass the validations
         # the user get another chance to fix that, to put it there again
         if @task.save # returns true or false
@@ -61,6 +63,7 @@ class TasksController < ApplicationController
 
     def find_task
         @task = Task.find(params[:id])
+        authorize @task
     end
 
     def task_params
