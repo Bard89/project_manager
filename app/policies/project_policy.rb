@@ -4,4 +4,9 @@ class ProjectPolicy < ApplicationPolicy
       scope.all
     end
   end
+  
+  def dashboard?
+    true
+  end
+
 end

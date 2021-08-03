@@ -14,6 +14,8 @@ class ProjectsController < ApplicationController
         # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
         # Project.where(user_id:current_user)
         @projects = Project.where(user_id:current_user).order(position: :asc) # projekty radim podle navoleny pozice
+        # here we authorise the @projects instance, and then in the project_policy.rb we say which users should be able to see the @projects
+        authorize @projects
     end
 
     # to show one restaurant
