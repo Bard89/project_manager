@@ -1,13 +1,10 @@
 class ProjectPolicy < ApplicationPolicy
   class Scope < Scope
-    def resolve
-      scope.all # means the same (for the Project) as Project.all -> it says all of the Projects to be displayed to the user
+    def resolve # for index method (dashboard for this app)
+      #scope.all # means the same (for the Project) as Project.all -> it says all of the Projects to be displayed to the user
       # for the index (here dashboadr method)
+      scope.where(user_id: user).order(position: :asc)
     end
-  end
-
-  def dashboard?
-    true
   end
 
   # asks the create method -> don't need the new here

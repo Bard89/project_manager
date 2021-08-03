@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   # it makes sure the pundit is called for every action except for the index one 
   
   # applies to every action, except index action 
-  after_action :verify_authorized, except: :index, unless: :skip_pundit? # the excep is probably just for mon-nested routes !
+  after_action :verify_authorized, except: [:index, :dashboard], unless: :skip_pundit? # the excep is probably just for mon-nested routes !
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
 

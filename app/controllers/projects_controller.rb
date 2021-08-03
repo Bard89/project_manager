@@ -13,11 +13,14 @@ class ProjectsController < ApplicationController
     def dashboard # index changed to dashboard, all the projects of logged in user
         # IMP IMP we'll have to do somethign like this, cause we don't wanna see all projects, but always from specific user
         # Project.where(user_id:current_user)
-        @projects = Project.where(user_id:current_user).order(position: :asc) # projekty radim podle navoleny pozice
+
+        # @projects = Project.where(user_id:current_user).order(position: :asc) # projekty radim podle navoleny pozice# tohle potom udelam pres pundit
+        
         # here we authorise the @projects instance, and then in the project_policy.rb we say which users should be able to see the @projects
         #authorize @projects #it's different to all of the other actions, because I have authorised not one action but all actions
         # so we use
         @projects = policy_scope(Project) # will look inside of our project_policy.rb and will look to the scope in the beginning
+        # in the project_policy added dashboard aside from index
     end
 
     # to show one restaurant

@@ -9,6 +9,10 @@ class ApplicationPolicy
 
   # all of these acions will return a boolean
   # these are the native actions of pundit for actions, I can redefine it in the z.B. project_policy.rb
+  def dashboard?
+    index?
+  end
+  
   def index?
     false
   end
