@@ -1,7 +1,11 @@
 class TaskPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user_id: user) # unfortunatelly I can't inser # Task.where(project_id: @project.id # here
+      if user.admin?
+        scope.all
+      else
+        scope.where(user_id: user) # unfortunatelly I can't inser # Task.where(project_id: @project.id # here
+      end
     end
   end
 
@@ -10,14 +14,20 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    user_is_owner_or_admin?
   end
 
   def update?
-    record.user == user
+    user_is_owner_or_admin?
   end
 
   def destroy?
-    record.user == user
+    user_is_owner_or_admin?
+  end
+
+  private
+
+  def user_is_owner_or_admin?
+    record.user == user || user.admin
   end
 end
