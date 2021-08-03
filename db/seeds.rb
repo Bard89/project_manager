@@ -52,7 +52,7 @@ puts "Total number of user seeds --> #{counter} <--"
 puts
 puts 
 counter = 0
-30.times do 
+200.times do 
     project = Project.create(
         title: "Project #{Faker::Company.name}",
         user_id: [jana, tomas, vojtech].sample.id,
@@ -69,7 +69,7 @@ puts "Total number of project seeds --> #{counter} <--"
 puts
 puts
 counter = 0
-150.times do 
+1000.times do 
     user_id_for_project = [jana, tomas, vojtech].sample.id
     task = Task.create(  #won't be created for some reason
         title: "task #{Faker::Beer.name} ",
