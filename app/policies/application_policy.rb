@@ -1,5 +1,6 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :record # we have user and argument passed to the authorise method, so e.g. 
+  # authorize @project, then @project is the :record here
 
   def initialize(user, record)
     @user = user

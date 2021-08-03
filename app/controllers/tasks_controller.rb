@@ -4,11 +4,12 @@ class TasksController < ApplicationController
     
     def index # index for all the tasks of one project
         @tasks = Task.where(user_id: current_user, project_id: @project.id)
+        authorize @tasks
     end
 
     def show
         # here is z.B. the question of authorisation or so, user could go to whichever project he wishes
-        @task = Task.find(params[:id])
+        #@task = Task.find(params[:id])
         # bellow is not suitable here, because I wanna show just one task -. I need authorisation
         #@tasks = Task.where(user_id: current_user, project_id: @project.id, id:params[:id])
     end
