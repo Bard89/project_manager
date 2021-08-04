@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:destroy]
     resources :profiles, only: [:show]
 
-    resources :tags
+    resources :tags, except: [:show] # I don't wanna use show, Tag has no other attributes, i just index it all
 
 
 end

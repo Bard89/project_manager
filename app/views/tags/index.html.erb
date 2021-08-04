@@ -1,0 +1,16 @@
+<p>To add a new tag fill in bellow</p>
+<%= simple_form_for @tag do |f| %>    
+    <%=f.input :title %>
+    <%=f.submit %>
+<% end %>
+
+<h1>All the tags of one concrete user</h1>
+<% @tags.each do |tag| %>
+    <p>
+        <span class="badge badge-pill badge-info"><%= tag.title %></span>
+        <%= link_to 'edit', edit_tag_path(tag), class: "btn btn-primary btn-sm" %> 
+        <%= link_to 'delete', tag_path(tag), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %> 
+    </p>
+<% end %>
+
+<%= link_to 'back to projects', dashboard_path, class: "btn btn-dark btn-sm" %> 

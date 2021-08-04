@@ -46,9 +46,14 @@ class TasksController < ApplicationController
     end
 
     def update
-        @task.update(task_params)
-        # redirect_to project_task_path(@task.project, @task)
-        redirect_to project_task_path(@task.project, @task)
+        if @task.update(task_params)
+            # redirect_to project_task_path(@task.project, @task)
+            flash[:success] = "Object was successfully updated"
+            redirect_to project_task_path(@task.project, @task)
+        else
+            flash[:error] = "Something went wrong"
+            render 'edit'
+        end
     end
 
     def destroy

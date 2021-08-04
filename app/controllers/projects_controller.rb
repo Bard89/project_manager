@@ -67,8 +67,13 @@ class ProjectsController < ApplicationController
 
     def update
         # @project = Project.find(params[:id])
-        @project.update(project_params) # I'll take the value from the form again
-        redirect_to project_path(@project)
+        if @project.update(project_params) # I'll take the value from the form again
+            flash[:success] = "Object was successfully updated"
+            redirect_to project_path(@project)
+        else
+            flash[:error] = "Something went wrong"
+            render 'edit'
+        end
     end
 
     def destroy

@@ -101,20 +101,20 @@ puts "Total number of task seeds --> #{counter} <--"
 
 puts
 puts
-# maybe will have to make the seeds first without tag_task_id and then update it after creating the tag_task seeds
-# counter = 0
-# 10.times do 
-#     user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
-#     task = Tag.create(
-#         title: "task #{Faker::Beer.name} ",
-#         user_id: user_id_for_project,
-#         tag_task_id: 
-#     )
-#     puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
-#     counter += 1
-# end
-# puts
-# puts "Total number of tags seeds --> #{counter} <--"
+
+counter = 0
+10.times do 
+    user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
+    tag = Tag.create(
+        title: "tag #{Faker::Music.genre} ",
+        user_id: user_id_for_tag#,
+        #tag_task_id: # can't do, don't have any yet
+    )
+    puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
+    counter += 1
+end
+puts
+puts "Total number of tags seeds --> #{counter} <--"
 
 puts
 puts "..."
