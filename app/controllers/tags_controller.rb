@@ -1,15 +1,13 @@
 class TagsController < ApplicationController
+
+    before_action :find_tag, only: [:edit, :update, :destroy]
+
     def index
         @tags = policy_scope(Tag)
 
         @tag = Tag.new
         authorize @tag
     end
-
-    # def new
-    #     @project = Project.new
-    #     authorize @project
-    # end
 
     def create
         @tag = Tag.new(tag_params)
@@ -23,7 +21,20 @@ class TagsController < ApplicationController
             render 'index' 
         end
     end
+    
+    def edit
+    end
 
+    def update
+        @tag.update(tag_params) # I'll take the value from the form again
+        redirect_to tags_path
+    end
+
+    def destroy
+        @tag.destroy
+        redirect_to tags_path
+    end
+    
     private
 
     def tag_params
@@ -34,7 +45,7 @@ class TagsController < ApplicationController
     # then i say I run it before some of the actions
     def find_tag
         @tag = Tag.find(params[:id])
-        authorize @tag # I put it here so I don't have to put it in every method one by one
+        authorize @tag
     end
 
 end

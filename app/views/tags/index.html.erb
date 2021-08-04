@@ -8,12 +8,8 @@
 <% @tags.each do |tag| %>
     <p>
         <span class="badge badge-pill badge-info"><%= tag.title %></span>
-        <%
-=begin%>
- <%= link_to 'edit', edit_project_path(@project), class: "btn btn-primary btn-sm" %> 
-        <%= link_to 'delete', project_path(@project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %> 
-<%
-=end%>
+        <%= link_to 'edit', edit_tag_path(tag), class: "btn btn-primary btn-sm" %> 
+        <%= link_to 'delete', tag_path(tag), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %> 
     </p>
 <% end %>
 
