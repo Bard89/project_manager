@@ -1,6 +1,9 @@
 class TagsController < ApplicationController
     def index
         @tags = policy_scope(Tag)
+
+        @tag = Tag.new
+        authorize @tag
     end
 
     # def new
@@ -8,19 +11,30 @@ class TagsController < ApplicationController
     #     authorize @project
     # end
 
-    # def create
-       
-    #     @project = Project.new(project_params)
-    #     @project.user_id = current_user.id
-    #     authorize @project
-    #     if @project.save
-    #         flash[:success] = "Project successfully created"
-    #         redirect_to project_path(@project)
-    #     else
-    #         flash[:error] = "Something went wrong"
-    #         render 'new' 
-    #     end
-    # end
+    def create
+        @tag = Tag.new(tag_params)
+        @tag.user_id = current_user.id
+        authorize @tag
+        if @tag.save
+            flash[:success] = "Tag successfully created"
+            redirect_to tags_path
+        else
+            flash[:error] = "Something went wrong"
+            render 'index' 
+        end
+    end
 
+    private
+
+    def tag_params
+        params.require(:tag).permit(:title)
+    end
+
+    # don't wanna write the find parmas many times, jsut create a method so we don't repeat ourselves
+    # then i say I run it before some of the actions
+    def find_tag
+        @tag = Tag.find(params[:id])
+        authorize @tag # I put it here so I don't have to put it in every method one by one
+    end
 
 end
