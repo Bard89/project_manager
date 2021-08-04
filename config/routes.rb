@@ -43,5 +43,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:destroy]
     resources :profiles, only: [:show]
 
+    resources :tags
+
 
 end
