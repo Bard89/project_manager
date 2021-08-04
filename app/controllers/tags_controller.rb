@@ -26,9 +26,15 @@ class TagsController < ApplicationController
     end
 
     def update
-        @tag.update(tag_params) # I'll take the value from the form again
-        redirect_to tags_path
+        if @tag.update(tag_params)
+            flash[:success] = "Object was successfully updated"
+            redirect_to tags_path
+        else
+            flash[:error] = "Something went wrong"
+            render 'edit'
+        end
     end
+    
 
     def destroy
         @tag.destroy
