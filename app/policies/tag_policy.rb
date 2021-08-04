@@ -1,10 +1,11 @@
 class TagPolicy < ApplicationPolicy
   class Scope < Scope
+    raise
     def resolve
       if user.admin?
         scope.all
       else
-        scope.where(user_id: user).order(position: :asc) # don't have to do user_id: user.id, i guess it takes the id parameter fro mthe user on its own
+        scope.where(user_id: user)#.order(position: :asc)
       end
     end
   end
@@ -28,4 +29,5 @@ class TagPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
 end
