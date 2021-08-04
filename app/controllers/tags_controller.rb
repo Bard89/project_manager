@@ -1,7 +1,6 @@
 class TagsController < ApplicationController
     def index
         @tags = policy_scope(Tag)
-        # @tasks = policy_scope(Task.where(project_id: @project.id))
     end
 
     # def new

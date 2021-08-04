@@ -1,6 +1,5 @@
 class TagPolicy < ApplicationPolicy
   class Scope < Scope
-    raise
     def resolve
       if user.admin?
         scope.all
@@ -8,10 +7,6 @@ class TagPolicy < ApplicationPolicy
         scope.where(user_id: user)#.order(position: :asc)
       end
     end
-  end
-
-  def index?
-    true
   end
 
   def show?
