@@ -5,6 +5,8 @@ class TasksController < ApplicationController
     def index # index for all the tasks of one project
         #@tasks = Task.where(user_id: current_user, project_id: @project.id)
         @tasks = policy_scope(Task.where(project_id: @project.id)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+
+        @tags = Tag.where(user_id:current_user)
     end
 
     def show
@@ -18,6 +20,7 @@ class TasksController < ApplicationController
         # @task.tags << @tags.find(11) # in the find is the id
 
         #@task.tags
+        #remove the one bellow
         @tag_tasks = TagTask.where(task_id: @task.id) # this is to show the ones tags that the user already has
     end
 
