@@ -8,6 +8,7 @@
 
 puts "Clearing database from Users and Projects and Tasks"
 # the order matters -> be careful with this -> more here: https://stackoverflow.com/questions/48739646/pgforeignkeyviolation-error-update-or-delete-on-table-xxx-violates-foreign
+TagTask.destroy_all
 Tag.destroy_all
 Task.destroy_all
 User.destroy_all
@@ -68,7 +69,7 @@ puts
 puts
 puts 
 counter = 0
-50.times do 
+100.times do 
     project = Project.create(
         title: "Project #{Faker::Company.name}",
         user_id: [jana, tomas, vojtech, zeus].sample.id,
@@ -79,12 +80,12 @@ counter = 0
 end
 
 puts
-#puts "Total number of project seeds --> #{counter} <--"
+puts "Total number of project seeds --> #{counter} <--"
 
 puts
 puts
 counter = 0
-200.times do 
+500.times do 
     user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
     task = Task.create(  #won't be created for some reason
         title: "task #{Faker::Beer.name} ",
@@ -98,21 +99,31 @@ counter = 0
     counter += 1
 end
 puts
-#puts "Total number of task seeds --> #{counter} <--"
+puts "Total number of task seeds --> #{counter} <--"
 
 puts
 puts
 
 counter = 0
 
-10.times do 
+200.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
     tag = Tag.create(
         title: "tag #{Faker::Music.genre} ",
         user_id: user_id_for_tag#,
-        #tag_task_id: # can't do, don't have any yet
     )
-    #puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
+    puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
+    counter += 1
+end
+puts
+puts "Total number of tags seeds --> #{counter} <--"
+
+counter = 0
+
+1000.times do 
+    tag_task = TagTask.create(tag_id: Tag.all.ids.sample, task_id: Task.all.ids.sample
+    )
+    puts "Created tag_tasks seeds id --> #{tag_task.id} <--"
     counter += 1
 end
 puts

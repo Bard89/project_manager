@@ -6,7 +6,7 @@ class TasksController < ApplicationController
         #@tasks = Task.where(user_id: current_user, project_id: @project.id)
         @tasks = policy_scope(Task.where(project_id: @project.id)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
 
-        #@tags = Tag.where(user_id:current_user)
+        @tags = Tag.where(user_id:current_user)
     end
 
     def show
@@ -16,12 +16,12 @@ class TasksController < ApplicationController
         #@tasks = Task.where(user_id: current_user, project_id: @project.id, id:params[:id])
 
         # I want to add tags directly in the show, or create a new method? 
-        
-        #@tags = Tag.where(user_id:current_user) # these I wanna se when i wanna assign a new tag
+        @tags = Tag.where(user_id:current_user) # these I wanna se when i wanna assign a new tag
         # @task.tags << @tags.find(11) # in the find is the id
 
         #@task.tags
-        #authorize @tags
+        #remove the one bellow
+        @tag_tasks = TagTask.where(task_id: @task.id) # this is to show the ones tags that the user already has
     end
 
     def new
