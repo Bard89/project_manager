@@ -14,8 +14,36 @@
     <strong>Is the task done? : </strong>
     <%= @task.is_done %>
 </p> 
-
-
+<p>
+<strong>Tags available: </strong>
+</p>
+<% @tags.each do |tag| %>
+    <p>
+        <span class="badge badge-pill badge-info"><%= tag.title %> 
+    </p>
+<% end %>
+<p>
+<strong>Assignments in the tag_task table: </strong>
+</p>
+<% @tag_tasks.each do |tag_task| %>
+    <p>
+        <span class="badge badge-pill badge-info"><%= tag_task %>
+    </p>
+<% end %>
+<p>
+<strong>All the assigned tags: </strong>
+</p>
+<p>
+    <%= @task.tags %> r
+</p>
+<p>
+    <strong>Tags assigned: </strong>
+</p>
+<p>
+    <% @task.tags.each do |task_tag| %>
+        <span class="badge badge-pill badge-info"><%= task_tag.title %></span>
+    <% end %>
+</p>
 <%= link_to 'back', project_tasks_path, class: "btn btn-dark btn-sm" %> 
 <%= link_to 'new task', new_project_task_path, class: "btn btn-primary btn-sm" %>
 <%= link_to 'delete task', task_path(@task), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
