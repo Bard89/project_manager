@@ -1,4 +1,5 @@
 <h1>All the tasks of one concrete project</h1>
+<%= link_to 'new task', new_project_task_path, class: "btn btn-primary btn-sm" %>
 <h2>Project title: <%= @project.title%>  </h2>
 <% @tasks.each do |task| %>
     <p>
