@@ -12,6 +12,13 @@ class TasksController < ApplicationController
         #@task = Task.find(params[:id])
         # bellow is not suitable here, because I wanna show just one task -. I need authorisation
         #@tasks = Task.where(user_id: current_user, project_id: @project.id, id:params[:id])
+
+        # I want to add tags directly in the show, or create a new method? 
+        @tags = Tag.where(user_id:current_user) # these I wanna se when i wanna assign a new tag
+        # @task.tags << @tags.find(11) # in the find is the id
+
+        #@task.tags
+        @tag_tasks = TagTask.where(task_id: @task.id) # this is to show the ones tags that the user already has
     end
 
     def new
