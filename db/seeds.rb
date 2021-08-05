@@ -8,6 +8,7 @@
 
 puts "Clearing database from Users and Projects and Tasks"
 # the order matters -> be careful with this -> more here: https://stackoverflow.com/questions/48739646/pgforeignkeyviolation-error-update-or-delete-on-table-xxx-violates-foreign
+Tag.destroy_all
 Task.destroy_all
 User.destroy_all
 Project.destroy_all
@@ -62,7 +63,7 @@ zeus = User.create(
 counter += 1
 puts "User seed named --> #{vojtech.first_name} <-- created"
 puts
-puts "Total number of user seeds --> #{counter} <--"
+#puts "Total number of user seeds --> #{counter} <--"
 
 puts
 puts 
@@ -78,7 +79,7 @@ counter = 0
 end
 
 puts
-puts "Total number of project seeds --> #{counter} <--"
+#puts "Total number of project seeds --> #{counter} <--"
 
 puts
 puts
@@ -97,12 +98,13 @@ counter = 0
     counter += 1
 end
 puts
-puts "Total number of task seeds --> #{counter} <--"
+#puts "Total number of task seeds --> #{counter} <--"
 
 puts
 puts
 
 counter = 0
+
 10.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
     tag = Tag.create(
@@ -110,7 +112,7 @@ counter = 0
         user_id: user_id_for_tag#,
         #tag_task_id: # can't do, don't have any yet
     )
-    puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
+    #puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
     counter += 1
 end
 puts
