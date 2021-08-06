@@ -1,0 +1,36 @@
+<h1>All the tasks of one concrete project</h1>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%
+=begin%>
+ <button type="button" class="btn btn-dark btn-sm">All</button>
+  <button type="button" class="btn btn-dark btn-sm">Done</button>
+  <button type="button" class="btn btn-dark btn-sm">Not done</button> 
+<%
+=end%>
+
+  <%= link_to 'All', project_tasks_path, class: "btn btn-dark btn-sm" %>
+  <%= link_to 'Done', index_done_project_tasks_path, class: "btn btn-dark btn-sm" %>
+  <%= link_to 'Not done', index_not_done_project_tasks_path, class: "btn btn-dark btn-sm" %>
+</div>
+
+<%= link_to 'new task', new_project_task_path, class: "btn btn-primary btn-sm" %>
+<h2>Project title: <%= @project.title%>  </h2>
+<% @tasks.each do |task| %>
+    <p>
+        <strong>Task title: </strong> <%=link_to task.title, project_task_path(@project, task), class: "btn btn-outline-dark btn-sm "%>
+        <%= link_to 'edit', edit_project_task_path(@project, task), class: "btn btn-primary btn-sm" %>
+        <%= link_to 'delete', task_path(task), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+
+        <br>
+        <strong>Task description: </strong><%= task.description %> 
+        <br>
+        <strong>Task status: </strong><%= task.is_done %>
+
+        <% task.tags.each do |task_tag| %>
+            <span class="badge badge-pill badge-info"> <%= task_tag.title %></span>
+        <% end %>
+    </p>
+<% end %>
+
+<p><%= link_to 'back', project_path(@project), class: "btn btn-dark btn-sm" %> </p>
+
