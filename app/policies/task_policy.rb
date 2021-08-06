@@ -13,6 +13,10 @@ class TaskPolicy < ApplicationPolicy
     true
   end
 
+  # def new_tag?
+  #   true
+  # end
+
   def show?
     user_is_owner_or_admin?
   end

@@ -9,6 +9,8 @@ class TasksController < ApplicationController
         @tags = Tag.where(user_id:current_user)
     end
 
+    # I'll need assign and destroy for a tag, resp I'll need a new create that will also assign it to the task here ... 
+
     def show
         # here is z.B. the question of authorisation or so, user could go to whichever project he wishes
         #@task = Task.find(params[:id])
@@ -21,8 +23,14 @@ class TasksController < ApplicationController
 
         #@task.tags
         #remove the one bellow
-        @tag_tasks = TagTask.where(task_id: @task.id) # this is to show the ones tags that the user already has
+        #@tag_tasks = TagTask.where(task_id: @task.id) # this is to show the ones tags that the user already has
+
+        # new_tag
     end
+
+    # def add_tag_to_task
+    #     @task.tags << Tag.find(111)
+    # end
 
     def new
         @task = Task.new
@@ -45,6 +53,25 @@ class TasksController < ApplicationController
             render 'new' # we display the template of the new page, we display what failed to save, simple_form handles that
         end
     end
+
+
+    # def new_tag
+    #     @tag = Tag.new # how about authorisation? 
+    #     authorize @tag
+    # end
+
+    # def create_tag
+    #     @tag = Tag.new(tag_params)
+    #     @tag.user_id = current_user.id
+    #     authorize @tag
+    #     if @tag.save
+    #         flash[:success] = "Tag successfully created"
+    #         redirect_to tags_path
+    #     else
+    #         flash[:error] = "Something went wrong"
+    #         render 'index' 
+    #     end
+    # end
     
     def edits
         #find_project by tu mel byt, pokud, bych ho pouzil v simple_form
@@ -84,4 +111,9 @@ class TasksController < ApplicationController
     def task_params
         params.require(:task).permit(:title, :description, :is_done)
     end
+
+    def tag_params
+        params.require(:tag).permit(:title)
+    end
+
 end
