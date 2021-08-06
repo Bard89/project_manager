@@ -24,7 +24,7 @@ in the nw, there is then no @task.project yet, cause it wasn't yet created
 <%= simple_form_for [@project, @task] do |f| %>
     <%=f.input :title %>
     <%=f.input :description %>
-    <%=f.input :is_done, as: :radio_buttons %>
+    <%=f.input :is_done, as: :boolean %>
 
     <div class="custom-control custom-checkbox">
         <% Tag.where(user_id:current_user).each do |tag| %>
