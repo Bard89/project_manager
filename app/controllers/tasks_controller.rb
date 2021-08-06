@@ -81,8 +81,8 @@ class TasksController < ApplicationController
     end
 
     def update
+        @task.tag_ids = params[:task][:tag_ids]
         if @task.update(task_params)
-            # redirect_to project_task_path(@task.project, @task)
             flash[:success] = "Object was successfully updated"
             redirect_to project_task_path(@task.project, @task)
         else
@@ -107,7 +107,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:title, :description, :is_done)
+        params.require(:task).permit(:title, :description, :is_done, params[:task])
     end
 
     def tag_params

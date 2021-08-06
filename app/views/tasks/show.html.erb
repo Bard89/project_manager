@@ -40,16 +40,23 @@
 <p>
 <strong>Assign new tags: </strong>
 </p>
-
-<div class="custom-control custom-checkbox">
-    <% @tags.each do |tag| %>
-        <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
-        <span class="badge badge-pill badge-info"><%= tag.title %></span>
-        <br />
-    <% end %>
-</div>
-
-
+<%
+=begin%>
+ <%= form_for(@product) do |f| %>
+    <div class="custom-control custom-checkbox">
+        <% @tags.each do |tag| %>
+            <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
+            <span class="badge badge-pill badge-info"><%= tag.title %></span>
+            <br />
+        <% end %>
+        <%= link_to 'update', project_task_path(@task), class: "btn btn-dark btn-sm", method: :patch %> 
+    </div>
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+<% end %> 
+<%
+=end%>
 
 
 <%
