@@ -1,9 +1,6 @@
-<p>To add a new tag fill in bellow</p>
-<%= simple_form_for @tag do |f| %>    
-    <%=f.input :title %>
-    <%=f.submit %>
-<% end %>
-
+<h1>
+    My projects <%= link_to "Create new tag", new_tag_path, class: "btn btn-primary" %> 
+</h1>
 <h1>All the tags of one concrete user</h1>
 <% @tags.each do |tag| %>
     <p>

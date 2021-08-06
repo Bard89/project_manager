@@ -1,13 +1,11 @@
 class TagsController < ApplicationController
 
-    before_action :find_tag, only: [:edit, :update, :destroy]
+    before_action :find_tag, only: [:show, :edit, :update, :destroy]
 
     def index
         @tags = policy_scope(Tag)
-
-        new
     end
-        
+
     def new
         @tag = Tag.new
         authorize @tag
@@ -22,7 +20,7 @@ class TagsController < ApplicationController
             redirect_to tags_path
         else
             flash[:error] = "Something went wrong"
-            render 'index' 
+            render 'new' 
         end
     end
     

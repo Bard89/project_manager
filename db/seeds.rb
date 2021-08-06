@@ -106,7 +106,7 @@ puts
 
 counter = 0
 
-200.times do 
+30.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
     tag = Tag.create(
         title: "tag #{Faker::Music.genre} ",
