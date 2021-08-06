@@ -25,5 +25,14 @@ in the nw, there is then no @task.project yet, cause it wasn't yet created
     <%=f.input :title %>
     <%=f.input :description %>
     <%=f.input :is_done, as: :radio_buttons %>
+
+    <div class="custom-control custom-checkbox">
+        <% Tag.where(user_id:current_user).each do |tag| %>
+            <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
+            <span class="badge badge-pill badge-info"><%= tag.title %></span>
+            <br />
+        <% end %>
+    </div>
+
     <%=f.submit class: "btn btn-primary btn-sm"%>
 <% end %>
