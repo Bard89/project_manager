@@ -23,7 +23,7 @@ class TagsController < ApplicationController
             redirect_to tags_path
         else
             flash[:error] = "Something went wrong"
-            render 'index' 
+            render 'new' 
         end
     end
     
