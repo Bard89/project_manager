@@ -9,21 +9,9 @@ class TaskPolicy < ApplicationPolicy
     end
   end
 
-  def index_done?
-    true
-  end
-
-  def index_not_done?
-    true
-  end
-
   def create?
     true
   end
-
-  # def new_tag?
-  #   true
-  # end
 
   def show?
     user_is_owner_or_admin?

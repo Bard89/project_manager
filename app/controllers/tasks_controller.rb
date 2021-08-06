@@ -9,17 +9,11 @@ class TasksController < ApplicationController
     end
 
     def index_done
-        #Task.where(project_id: @project.id, user_id: current_user, is_done: true)
         @tasks = policy_scope(Task.where(project_id: @project.id, is_done: true)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
-        #@tags = Tag.where(user_id:current_user)
-        authorize @tasks
     end
 
     def index_not_done
-        #Task.where(project_id: @project.id, user_id: current_user, is_done: false)
         @tasks = policy_scope(Task.where(project_id: @project.id, is_done: false)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
-        #@tags = Tag.where(user_id:current_user)    
-        authorize @tasks
     end
 
     # I'll need assign and destroy for a tag, resp I'll need a new create that will also assign it to the task here ... 
