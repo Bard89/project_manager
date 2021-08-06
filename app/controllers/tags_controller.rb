@@ -1,11 +1,12 @@
 class TagsController < ApplicationController
 
-    before_action :find_tag, only: [:edit, :update, :destroy]
+    before_action :find_tag, only: [:show, :edit, :update, :destroy]
 
     def index
         @tags = policy_scope(Tag)
+    end
 
-        new
+    def show
     end
         
     def new

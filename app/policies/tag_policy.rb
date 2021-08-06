@@ -9,8 +9,8 @@ class TagPolicy < ApplicationPolicy
     end
   end
 
-  def index? # create is in index in my case, so anybody can create a new instance
-    true
+  def show?
+    user_is_owner_or_admin?
   end
 
   def create?
