@@ -17,6 +17,15 @@ class ApplicationPolicy
     false
   end
 
+  #added for tasks_controller
+  def index_done?
+    index?
+  end
+
+  def index_not_done?
+    index?
+  end
+
   def show?
     false
   end

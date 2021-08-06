@@ -35,7 +35,12 @@ Rails.application.routes.draw do
       # rule of thumb -> only nest things that don't have their own id
         # nest [: index, :new, :create]
         # don't nest [:show, :edit, :update, :destroy]
-      resources :tasks, except: [:destroy]
+      resources :tasks, except: [:destroy] do
+        collection do
+          get :index_done
+          get :index_not_done
+        end
+      end
     end
     # outside of nesting, because I don't need an id of the project
     # the task exists already, we just destroy it, we don't wanna think about the project anymore
