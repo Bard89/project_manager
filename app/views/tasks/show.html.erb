@@ -3,8 +3,8 @@
     <strong>Task title:</strong>
     <%= @task.title%>
     <%= link_to 'edit', edit_project_task_path, class: "btn btn-primary btn-sm" %> 
-
 </p>
+
 <p>  
     <strong>Description: </strong>
     <%= @task.description %>
@@ -14,6 +14,43 @@
     <strong>Is the task done? : </strong>
     <%= @task.is_done %>
 </p> 
+
+<p>
+<strong>All the assigned tags: </strong>
+</p>
+
+<p>
+    <% @task.tags.each do |task_tag| %>
+        <span class="badge badge-pill badge-info"><%= task_tag.title %></span>
+    <% end %>
+</p>
+<%
+=begin%>
+ <p>
+    <%= simple_form_for(@restaurant) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :rating, collection:  %>
+    <%= f.submit %>
+    <% end %>
+</p> 
+<%
+=end%>
+
+<p>
+<strong>Assign new tags: </strong>
+</p>
+
+<div class="custom-control custom-checkbox">
+    <% @tags.each do |tag| %>
+        <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
+        <span class="badge badge-pill badge-info"><%= tag.title %></span>
+        <br />
+    <% end %>
+</div>
+
+
+
 
 <%
 =begin%>
@@ -25,15 +62,7 @@
 <%
 =end%>
 
-<p>
-<strong>All the assigned tags: </strong>
-</p>
 
-<p>
-    <% @task.tags.each do |task_tag| %>
-        <span class="badge badge-pill badge-info"><%= task_tag.title %></span>
-    <% end %>
-</p>
 
 <p>
 <strong>Tags available: </strong>
@@ -43,7 +72,7 @@
         <span class="badge badge-pill badge-info"><%= tag.title %> 
         <%
 =begin%>
- tag.tasks << @task  
+    tag.tasks << @task  
 <%
 =end%>
     </p>

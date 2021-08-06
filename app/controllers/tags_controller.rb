@@ -6,9 +6,6 @@ class TagsController < ApplicationController
         @tags = policy_scope(Tag)
     end
 
-    def show
-    end
-        
     def new
         @tag = Tag.new
         authorize @tag

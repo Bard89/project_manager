@@ -9,10 +9,6 @@ class TagPolicy < ApplicationPolicy
     end
   end
 
-  def show?
-    user_is_owner_or_admin?
-  end
-
   def create?
     true
   end
