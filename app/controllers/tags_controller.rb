@@ -5,6 +5,10 @@ class TagsController < ApplicationController
     def index
         @tags = policy_scope(Tag)
 
+        new
+    end
+        
+    def new
         @tag = Tag.new
         authorize @tag
     end
@@ -34,11 +38,14 @@ class TagsController < ApplicationController
             render 'edit'
         end
     end
-    
 
     def destroy
         @tag.destroy
         redirect_to tags_path
+    end
+
+    def add_tag_to_task
+        
     end
     
     private
@@ -53,5 +60,6 @@ class TagsController < ApplicationController
         @tag = Tag.find(params[:id])
         authorize @tag
     end
+
 
 end
