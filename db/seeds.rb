@@ -64,7 +64,7 @@ zeus = User.create(
 counter += 1
 puts "User seed named --> #{vojtech.first_name} <-- created"
 puts
-#puts "Total number of user seeds --> #{counter} <--"
+puts "Total number of user seeds --> #{counter} <--"
 
 puts
 puts 
