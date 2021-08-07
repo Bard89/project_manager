@@ -1,6 +1,7 @@
+<h1>Concrete one task of one concrete project </h1>
 <p>
-    <h2>Task: <%= @task.title%></h2>
-    
+    <strong>Task title:</strong>
+    <%= @task.title%>
     <%= link_to 'edit', edit_project_task_path, class: "btn btn-primary btn-sm" %> 
 </p>
 
@@ -22,6 +23,65 @@
     <% @task.tags.each do |task_tag| %>
         <span class="badge badge-pill badge-info"><%= task_tag.title %></span>
     <% end %>
+</p>
+<%
+=begin%>
+ <p>
+    <%= simple_form_for(@restaurant) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :rating, collection:  %>
+    <%= f.submit %>
+    <% end %>
+</p> 
+<%
+=end%>
+
+<p>
+<strong>Assign new tags: </strong>
+</p>
+
+<div class="custom-control custom-checkbox">
+    <% @tags.each do |tag| %>
+        <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
+        <span class="badge badge-pill badge-info"><%= tag.title %></span>
+        <br />
+    <% end %>
+<  %= link_to 'back', project_tasks_path, class: "btn btn-dark btn-sm" %> 
+
+</div>
+
+
+
+
+<%
+=begin%>
+ <p>To add a new tag fill in bellow</p>
+<%= simple_form_for @tag do |f| %>    
+    <%=f.input :title %>
+    <%=f.submit %>
+<% end %> 
+<%
+=end%>
+
+
+
+<p>
+<strong>Tags available: </strong>
+</p>
+<% @tags.each do |tag| %>
+    <p>
+        <span class="badge badge-pill badge-info"><%= tag.title %> 
+        <%
+=begin%>
+    tag.tasks << @task  
+<%
+=end%>
+    </p>
+<% end %>
+
+<p>
+    <%= @task.tags %> r
 </p>
 
 <%= link_to 'back', project_tasks_path, class: "btn btn-dark btn-sm" %> 

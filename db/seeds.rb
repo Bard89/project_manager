@@ -101,8 +101,8 @@ counter = 0
 30.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
     tag = Tag.create(
-        title: "#{Faker::Fantasy::Tolkien.race} ",
-        user_id: user_id_for_tag#,
+        title: "#{Faker::Creature::Animal.name} ",
+        user_id: user_id_for_tag
     )
     puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
     counter += 1
@@ -113,7 +113,8 @@ puts "Total number of tags seeds --> #{counter} <--"
 counter = 0
 
 1000.times do 
-    tag_task = TagTask.create(tag_id: Tag.all.ids.sample, task_id: Task.all.ids.sample
+    user_id_for_task_tag = [jana, tomas, vojtech, zeus].sample.id
+    tag_task = TagTask.create(tag_id: Tag.where(user_id: user_id_for_task_tag).ids.sample, task_id: Task.where(user_id: user_id_for_task_tag).ids.sample
     )
     puts "Created tag_tasks seeds id --> #{tag_task.id} <--"
     counter += 1
