@@ -25,6 +25,19 @@ class ProjectsController < ApplicationController
         @pagy, @projects = pagy(policy_scope(Project)) # will look inside of our project_policy.rb and will look to the scope in the beginning
         #@projects = policy_scope(Project)
         # in the project_policy added dashboard aside from index
+
+
+
+        # @search = params["search"]
+        # if @search.present?
+        #     @title = @search["title"]
+        #     @projects = @projects.where("title ILIKE ?", "%#{@title}%")
+        # end
+        
+        if params[:query].present?
+            @projects = Project.search_by_title(params[:query])
+        end
+
     end
 
     # to show one restaurant

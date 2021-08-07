@@ -12,13 +12,26 @@
     <div class+="row justify-content-center">
         <div class="col-sm-8">
             <div>
+                <%= form_tag dashboard_path, method: :get do %>
+                <%= text_field_tag :query,
+                    params[:query],
+                    class: "form-control",
+                    placeholder: "Find a project"
+                %>
+                <%= submit_tag "Search", class: "btn btn-primary" %>
+                <% end %>
+                <br>
+            </div>
+
+            <div>
                 <h1>My projects <%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> </h1>
                 <br>
             </div>
+            
             <div id="projects">
                 <% @projects.each do |project| %>
                     <p>
-                        <strong>Project title: </strong><%= link_to project.title, project_path(project), class: "btn btn-outline-dark btn-sm"%>
+                        <strong>Project title: </strong><%= link_to highlight(project.title, params[:query]), project_path(project), class: "btn btn-outline-dark btn-sm"%>
                         <strong>Position: </strong> <%= project.position%>
                         <%= link_to 'delete', project_path(project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
                     </p>

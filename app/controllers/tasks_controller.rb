@@ -51,7 +51,7 @@ class TasksController < ApplicationController
         authorize @task
         # the if else statement basically does for us that when we don't pass the validations
         # the user get another chance to fix that, to put it there again
-        if @task.save # returns true or false
+        if @task.save && @task.update(task_params) && @task.tag_ids = params[:task][:tag_ids]
             flash[:success] = "Task successfully created"
             redirect_to project_task_path(@project, @task) # if I have 2 dynamic values/ids, then I put it in like this
         else

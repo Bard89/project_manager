@@ -22,7 +22,7 @@ counter = 0
 puts
 jana = User.create(
     first_name: "Jana",
-    last_name: "Moudra",
+    last_name: "M.",
     email: "jana@proman.com",
     password: "123456",
     admin: false
@@ -32,7 +32,7 @@ puts "User seed named --> #{jana.first_name} <-- created"
 
 tomas = User.create(
     first_name: "Tomas",
-    last_name: "Jukin",
+    last_name: "J.",
     email: "tomas@proman.com",
     password: "123456",
     admin: false
@@ -43,7 +43,7 @@ puts "User seed named --> #{tomas.first_name} <-- created"
 
 vojtech = User.create(
     first_name: "Vojtech",
-    last_name: "Matous",
+    last_name: "M.",
     email: "vojtech@proman.com",
     password: "123456",
     admin: false
