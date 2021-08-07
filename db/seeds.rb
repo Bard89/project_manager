@@ -79,10 +79,10 @@ puts
 counter = 0
 500.times do 
     user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
-    task = Task.create(  #won't be created for some reason
+    task = Task.create( 
         title: "#{Faker::Fantasy::Tolkien.location} ",
         description: "#{Faker::Quote.yoda}",
-        is_done: [false, true].sample
+        is_done: [false, true].sample,
         # attachement: file .... 
         user_id: user_id_for_project,
         project_id: Project.where(user_id: user_id_for_project).sample.id
