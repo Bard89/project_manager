@@ -6,14 +6,23 @@ class TasksController < ApplicationController
         #@tasks = Task.where(user_id: current_user, project_id: @project.id)
         @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id)))#, items: 1) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
         #@tags = Tag.where(user_id:current_user)
+        if params[:query].present?
+            @pagy, @tasks = pagy(policy_scope(Task).search_by_title(params[:query]))
+        end
     end
 
     def index_done
         @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true))) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+        if params[:query].present?
+            @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true)).search_by_title(params[:query]))
+        end
     end
 
     def index_not_done
         @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: false))) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+        if params[:query].present?
+            @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: false)).search_by_title(params[:query]))
+        end
     end
 
     # I'll need assign and destroy for a tag, resp I'll need a new create that will also assign it to the task here ... 

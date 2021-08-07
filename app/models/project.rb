@@ -16,4 +16,6 @@ class Project < ApplicationRecord
             # now not the whole word needs to be included
             tsearch: { prefix: true } # <-- now `superman batm` will return something!
         }
+    # multisearch from pg gem
+    multisearchable against: [:title]
 end

@@ -1,13 +1,6 @@
 <h1>All the tasks of one concrete project</h1>
-<div class="btn-group" role="group" aria-label="Basic example">
-  <%
-=begin%>
- <button type="button" class="btn btn-dark btn-sm">All</button>
-  <button type="button" class="btn btn-dark btn-sm">Done</button>
-  <button type="button" class="btn btn-dark btn-sm">Not done</button> 
-<%
-=end%>
 
+<div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to 'All', project_tasks_path, class: "btn btn-dark btn-sm" %>
   <%= link_to 'Done', index_done_project_tasks_path, class: "btn btn-dark btn-sm" %>
   <%= link_to 'Not done', index_not_done_project_tasks_path, class: "btn btn-dark btn-sm" %>
@@ -17,7 +10,7 @@
 <h2>Project title: <%= @project.title%>  </h2>
 <% @tasks.each do |task| %>
     <p>
-        <strong>Task title: </strong> <%=link_to task.title, project_task_path(@project, task), class: "btn btn-outline-dark btn-sm "%>
+        <strong>Task title: </strong> <%= link_to highlight(task.title, params[:query]), project_task_path(@project, task), class: "btn btn-outline-dark btn-sm "%>
         <%= link_to 'edit', edit_project_task_path(@project, task), class: "btn btn-primary btn-sm" %>
         <%= link_to 'delete', task_path(task), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
 
