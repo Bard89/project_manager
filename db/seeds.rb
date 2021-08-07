@@ -112,10 +112,15 @@ puts "Total number of tags seeds --> #{counter} <--"
 
 counter = 0
 
+tag_tasks = []
 1000.times do 
     user_id_for_task_tag = [jana, tomas, vojtech, zeus].sample.id
-    tag_task = TagTask.create(tag_id: Tag.where(user_id: user_id_for_task_tag).ids.sample, task_id: Task.where(user_id: user_id_for_task_tag).ids.sample
-    )
+    tag_task = TagTask.create(
+        tag_id: Tag.where(user_id: user_id_for_task_tag).ids.sample,
+        task_id: Task.where(user_id: user_id_for_task_tag).ids.sample)
+    tag_tasks << tag_task.id
+    TagTask.destroy if tag_tasks.include?(tag_task)
+    
     puts "Created tag_tasks seeds id --> #{tag_task.id} <--"
     counter += 1
 end
