@@ -4,16 +4,16 @@ class TasksController < ApplicationController
     
     def index # index for all the tasks of one project
         #@tasks = Task.where(user_id: current_user, project_id: @project.id)
-        @tasks = policy_scope(Task.where(project_id: @project.id)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id)))#, items: 1) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
         #@tags = Tag.where(user_id:current_user)
     end
 
     def index_done
-        @tasks = policy_scope(Task.where(project_id: @project.id, is_done: true)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true))) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
     end
 
     def index_not_done
-        @tasks = policy_scope(Task.where(project_id: @project.id, is_done: false)) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: false))) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
     end
 
     # I'll need assign and destroy for a tag, resp I'll need a new create that will also assign it to the task here ... 

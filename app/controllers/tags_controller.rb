@@ -3,7 +3,7 @@ class TagsController < ApplicationController
     before_action :find_tag, only: [:show, :edit, :update, :destroy]
 
     def index
-        @tags = policy_scope(Tag)
+        @pagy, @tags = pagy(policy_scope(Tag))
     end
 
     def new
