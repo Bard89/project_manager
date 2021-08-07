@@ -76,3 +76,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # for pagination
 gem 'pagy'
+
+# for search
+gem 'pg_search'
