@@ -12,19 +12,19 @@
     <div class+="row justify-content-center">
         <div class="col-sm-8">
             <div>
-                <%= form_tag dashboard_path, method: :get do %>
+                <%= form_tag dashboard_path, class:"form-inline", method: :get do %>
                 <%= text_field_tag :query,
                     params[:query],
-                    class: "form-control",
+                    class: "form-control mr-sm-2",
                     placeholder: "Find a project"
                 %>
-                <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+                <%= submit_tag "Search", class: "btn btn-outline-primary my-2 my-sm-0" %>
                 <% end %>
                 <br>
             </div>
 
             <div>
-                <h1>My projects <%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> </h1>
+                <h2>My projects: <%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> </h2>
                 <br>
             </div>
             
