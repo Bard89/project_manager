@@ -37,6 +37,10 @@ gem 'faker'
 # for authorisation
 gem 'pundit'
 
+# for pagination
+gem 'pagy'
+
+
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 # for better form, replaces the form_for for simple_form_for
