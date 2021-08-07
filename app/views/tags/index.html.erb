@@ -1,10 +1,24 @@
 <h1>
-    My projects <%= link_to "Create new tag", new_tag_path, class: "btn btn-primary" %> 
+    <%= link_to "Create new tag", new_tag_path, class: "btn btn-primary" %> 
 </h1>
+
+
+<div>
+    <%= form_tag tags_path, method: :get do %>
+    <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a tag"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+    <br>
+</div>
+
 <h1>All the tags of one concrete user</h1>
 <% @tags.each do |tag| %>
     <p>
-        <span class="badge badge-pill badge-info"><%= tag.title %></span>
+        <span class="badge badge-pill badge-info"><%= highlight(tag.title, params[:query]) %></span>
         <%= link_to 'edit', edit_tag_path(tag), class: "btn btn-primary btn-sm" %> 
         <%= link_to 'delete', tag_path(tag), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %> 
     </p>

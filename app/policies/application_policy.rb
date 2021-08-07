@@ -26,6 +26,10 @@ class ApplicationPolicy
     index?
   end
 
+  def index_multisearch?
+    dashboard?
+  end
+
   def show?
     false
   end

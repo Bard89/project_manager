@@ -4,6 +4,11 @@ class TagsController < ApplicationController
 
     def index
         @pagy, @tags = pagy(policy_scope(Tag))
+        if params[:query].present?
+            @pagy, @tags = pagy(policy_scope(Tag).search_by_title(params[:query]))
+            # tady udelam multisearch, potom si idelam redirect na novy view (novy routes) a tam budu mit odkazy do aplikace na ty veci co jsem si vyhleda
+            # proiteruji to trikrat (projects, tasks, tags) s if condition na to abych to od sebe oddelil ?
+        end
     end
 
     def new

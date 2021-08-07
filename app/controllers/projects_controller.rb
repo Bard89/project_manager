@@ -36,9 +36,15 @@ class ProjectsController < ApplicationController
         
         if params[:query].present?
             @pagy, @projects = pagy(policy_scope(Project).search_by_title(params[:query]))
+            # tady udelam multisearch, potom si idelam redirect na novy view (novy routes) a tam budu mit odkazy do aplikace na ty veci co jsem si vyhleda
+            # proiteruji to trikrat (projects, tasks, tags) s if condition na to abych to od sebe oddelil ?
         end
-
     end
+
+    # def index_multisearch
+    #     @results = PgSearch.multisearch("pro")#(params[:query])
+    #     skip_policy_scope
+    # end
 
     # to show one restaurant
     def show
