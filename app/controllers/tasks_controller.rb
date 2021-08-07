@@ -6,6 +6,11 @@ class TasksController < ApplicationController
         #@tasks = Task.where(user_id: current_user, project_id: @project.id)
         @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id)))#, items: 1) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
         #@tags = Tag.where(user_id:current_user)
+        if params[:query].present?
+            @pagy, @tasks = pagy(policy_scope(Task).search_by_title(params[:query]))
+            # tady udelam multisearch, potom si idelam redirect na novy view (novy routes) a tam budu mit odkazy do aplikace na ty veci co jsem si vyhleda
+            # proiteruji to trikrat (projects, tasks, tags) s if condition na to abych to od sebe oddelil ?
+        end
     end
 
     def index_done

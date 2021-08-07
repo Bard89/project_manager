@@ -1,4 +1,15 @@
 <h1>All the tasks of one concrete project</h1>
+<div>
+    <%= form_tag project_tasks_path, method: :get do %>
+    <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a tag"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+    <% end %>
+    <br>
+</div>
 <div class="btn-group" role="group" aria-label="Basic example">
   <%
 =begin%>
@@ -7,6 +18,8 @@
   <button type="button" class="btn btn-dark btn-sm">Not done</button> 
 <%
 =end%>
+
+
 
   <%= link_to 'All', project_tasks_path, class: "btn btn-dark btn-sm" %>
   <%= link_to 'Done', index_done_project_tasks_path, class: "btn btn-dark btn-sm" %>
