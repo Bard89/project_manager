@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
         # end
         
         if params[:query].present?
-            @projects = Project.search_by_title(params[:query])
+            @pagy, @projects = pagy(policy_scope(Project).search_by_title(params[:query]))
         end
 
     end
