@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+    
     before_action :find_project, only: [:show, :edit, :update, :destroy] # to be able to use the private method of find_project, so we don't repeat ourselves
     
     # here we code all the actions for which we created the routes rb
@@ -19,7 +20,10 @@ class ProjectsController < ApplicationController
         # here we authorise the @projects instance, and then in the project_policy.rb we say which users should be able to see the @projects
         #authorize @projects #it's different to all of the other actions, because I have authorised not one action but all actions
         # so we use
-        @projects = policy_scope(Project) # will look inside of our project_policy.rb and will look to the scope in the beginning
+
+        # the pagy just saves it all in pagy, what I had before
+        @pagy, @projects = pagy(policy_scope(Project)) # will look inside of our project_policy.rb and will look to the scope in the beginning
+        #@projects = policy_scope(Project)
         # in the project_policy added dashboard aside from index
     end
 
