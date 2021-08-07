@@ -63,7 +63,7 @@ puts
 counter = 0
 100.times do 
     project = Project.create(
-        title: "Project #{Faker::Restaurant.type }",
+        title: "#{Faker::Restaurant.type }",
         user_id: [jana, tomas, vojtech, zeus].sample.id,
         position: rand(100)
     )
@@ -80,8 +80,8 @@ counter = 0
 500.times do 
     user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
     task = Task.create(  #won't be created for some reason
-        title: "task #{Faker::Fantasy::Tolkien.location} ",
-        description: "task-description #{Faker::Quote.yoda}",
+        title: "#{Faker::Fantasy::Tolkien.location} ",
+        description: "#{Faker::Quote.yoda}",
         is_done: [false, true].sample
         # attachement: file .... 
         user_id: user_id_for_project,
@@ -101,7 +101,7 @@ counter = 0
 30.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
     tag = Tag.create(
-        title: "tag #{Faker::Fantasy::Tolkien.race} ",
+        title: "#{Faker::Fantasy::Tolkien.race} ",
         user_id: user_id_for_tag#,
     )
     puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"

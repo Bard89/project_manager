@@ -7,7 +7,7 @@
 </div>
 
 <%= link_to 'new task', new_project_task_path, class: "btn btn-primary btn-sm" %>
-<h2>Project title: <%= @project.title%>  </h2>
+<h2>Project: <%= @project.title%>  </h2>
 <% @tasks.each do |task| %>
     <p>
         <strong>Task title: </strong> <%= link_to highlight(task.title, params[:query]), project_task_path(@project, task), class: "btn btn-outline-dark btn-sm "%>
