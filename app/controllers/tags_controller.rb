@@ -6,8 +6,6 @@ class TagsController < ApplicationController
         @pagy, @tags = pagy(policy_scope(Tag))
         if params[:query].present?
             @pagy, @tags = pagy(policy_scope(Tag).search_by_title(params[:query]))
-            # tady udelam multisearch, potom si idelam redirect na novy view (novy routes) a tam budu mit odkazy do aplikace na ty veci co jsem si vyhleda
-            # proiteruji to trikrat (projects, tasks, tags) s if condition na to abych to od sebe oddelil ?
         end
     end
 
@@ -57,12 +55,8 @@ class TagsController < ApplicationController
         params.require(:tag).permit(:title)
     end
 
-    # don't wanna write the find parmas many times, jsut create a method so we don't repeat ourselves
-    # then i say I run it before some of the actions
     def find_tag
         @tag = Tag.find(params[:id])
         authorize @tag
     end
-
-
 end
