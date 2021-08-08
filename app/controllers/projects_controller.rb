@@ -9,11 +9,6 @@ class ProjectsController < ApplicationController
         end
     end
 
-    # def index_multisearch
-    #     @results = PgSearch.multisearch("pro")#(params[:query])
-    #     skip_policy_scope
-    # end
-
     def show
     end
 
