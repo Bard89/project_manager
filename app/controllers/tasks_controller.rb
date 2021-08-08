@@ -57,7 +57,7 @@ class TasksController < ApplicationController
         @task.project = @project
         @task.user = current_user
         authorize @task
-        if @task.save && @task.update(task_params) && @task.tag_ids = params[:task][:tag_ids]
+        if @task.save && @task.update(task_params)
             flash[:success] = "Task successfully created"
             redirect_to project_task_path(@project, @task)
         else
