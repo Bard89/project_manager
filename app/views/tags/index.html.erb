@@ -16,16 +16,22 @@
         <h1>All the tags of one concrete user <%= link_to "Create new tag", new_tag_path, class: "btn btn-primary" %> </h1>
         <% @tags.each do |tag| %>
             <p>
-                <span class="badge badge-pill badge-info"><%= highlight(tag.title, params[:query]) %></span>
-                <%= link_to 'edit', edit_tag_path(tag), class: "btn btn-primary btn-sm" %> 
-                <%= link_to 'delete', tag_path(tag), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %> 
+            <div class="row justify-content-left">
+                <div class="col-3">
+                    <span class="badge badge-pill badge-info"><%= highlight(tag.title, params[:query]) %></span>
+                </div>
+                <div class="col-3">
+                    <%= link_to 'edit', edit_tag_path(tag), class: "btn btn-primary btn-sm" %> 
+                    <%= link_to 'delete', tag_path(tag), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %> 
+                </div>
+            </div>
             </p>
         <% end %>
-
         <%= link_to 'back to projects', dashboard_path, class: "btn btn-dark btn-sm" %> 
-
         <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
         <%== pagy_bootstrap_nav(@pagy) %>
         </div>
     </div>
 </div>
+
+
