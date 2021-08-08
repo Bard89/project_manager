@@ -4,6 +4,9 @@ class Task < ApplicationRecord
   has_many :tag_tasks, dependent: :destroy ##
   has_many :tags, through: :tag_tasks
 
+  # for the active storage
+  has_one_attached:file
+
   validates :title, presence: true
   validates :is_done, inclusion: { in: [ true, false ] }
 

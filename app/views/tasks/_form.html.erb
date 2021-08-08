@@ -5,6 +5,7 @@
                 <%=f.input :title %>
                 <%=f.input :description %>
                 <%=f.input :is_done, as: :boolean %>
+                <%=f.input :file, as: :file %>
                 <div class="custom-control custom-checkbox">
                     <% Tag.where(user_id:current_user).each do |tag| %>
                         <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>

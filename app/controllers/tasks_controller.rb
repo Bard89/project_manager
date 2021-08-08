@@ -97,7 +97,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:title, :description, :is_done)
+        params.require(:task).permit(:title, :description, :is_done, :file)
     end
 
     def tag_params
