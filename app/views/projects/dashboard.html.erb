@@ -22,7 +22,7 @@
                     <p>
                         <div class="row justify-content-left">
                         <div class="col-6">
-                                <strong>Title: </strong><%= link_to highlight(project.title, params[:query]), project_path(project), class: "btn btn-outline-dark btn-sm"%>
+                                <%= link_to highlight(project.title, params[:query]), project_path(project), class: "btn btn-outline-dark btn-sm"%>
                                 <%= link_to 'delete', project_path(project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
                             </div>
                             <div class="col-2">
