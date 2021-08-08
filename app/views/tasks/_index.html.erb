@@ -19,8 +19,8 @@
                     <br>
                     <strong>Description: </strong><%= task.description %> 
                     <br>
-                    <strong>Status: </strong><%= task.is_done %>
-
+                    <strong>Change status?: </strong><%=link_to "status", update_status_project_task_path(@project, task), method: :patch%>
+                    <strong>Is task done?: </strong><%= task.is_done %> 
                     <% task.tags.each do |task_tag| %>
                         <span class="badge badge-pill badge-info"> <%= task_tag.title %></span>
                     <% end %>

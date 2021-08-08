@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :find_project, only: [:index, :index_done, :index_not_done,  :new, :create, :edit]
-    before_action :find_task, only: [:show, :edit, :update, :destroy] 
+    before_action :find_task, only: [:update_status, :show, :edit, :update, :destroy] 
     
     def index
         @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id)))
@@ -21,6 +21,28 @@ class TasksController < ApplicationController
         if params[:query].present?
             @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: false)).search_by_title(params[:query]))
         end
+    end
+
+    def update_status
+        @task.is_done ? @task.update(is_done: false) : @task.update(is_done: true)
+        # @task.update(is_done: true)
+        redirect_to project_tasks_path(@task.project)
+
+        # if @task.is_done
+        #     if @task.update(is_done: "false")
+        #         flash[:success] = "Object was successfully updated" #to #{@task.is_done ? "done" : "not done"}"
+        #         redirect_to project_tasks_path(@task.project)
+        #     else
+        #         flash[:error] = "Something went wrong"
+        #     end
+        # else
+        #     if @task.update(is_done: true)
+        #         flash[:success] = "Object was successfully updated" #to #{@task.is_done ? "done" : "not done"}"
+        #         redirect_to project_tasks_path(@task.project)
+        #     else
+        #         flash[:error] = "Something went wrong"
+        #     end
+        # end
     end
 
     def show
@@ -66,6 +88,7 @@ class TasksController < ApplicationController
     end
     
     private
+
     def find_project
         @project = Project.find(params[:project_id])
     end
