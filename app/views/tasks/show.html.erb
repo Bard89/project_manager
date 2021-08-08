@@ -21,6 +21,19 @@
                             <strong>not done</strong>
                         <% end %>                        
                 </div>
+                <div>
+                    <p>
+                    <br>
+                    <% if @task.file.image? %>
+                        <%= image_tag url_for(@task.file)%></p>
+                    <% else %>
+                        <% if @task.file.attached? %>
+                            File Uploaded
+                        <% else %>
+                            No file added.
+                        <% end%>
+                    <% end%>
+                </div>
             </p>
 
             <p>

@@ -10,14 +10,14 @@ class TasksController < ApplicationController
     end
 
     def index_done
-        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true))) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true)))
         if params[:query].present?
             @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true)).search_by_title(params[:query]))
         end
     end
 
     def index_not_done
-        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: false))) # takhle to vytridi ale pstatni to mohou porad editovat kdyz chteji
+        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: false))) 
         if params[:query].present?
             @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: false)).search_by_title(params[:query]))
         end
@@ -97,7 +97,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:title, :description, :is_done)
+        params.require(:task).permit(:title, :description, :is_done, :file, :remove_file)
     end
 
     def tag_params
