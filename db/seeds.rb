@@ -63,7 +63,7 @@ puts
 counter = 0
 100.times do 
     project = Project.create(
-        title: "#{Faker::Restaurant.type }",
+        title: "#{Faker::Fantasy::Tolkien.poem}",
         user_id: [jana, tomas, vojtech, zeus].sample.id,
         position: rand(100)
     )

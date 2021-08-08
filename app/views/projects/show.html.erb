@@ -1,46 +1,20 @@
-<%
-=begin%>
-    we gonna add link to go back, edit and destroy
+<div class="container">
+    <div class+="row justify-content-center">
+        <div class="col-sm-12">
+            <p>
+                <strong>Project title:</strong>
+                <%= link_to @project.title, project_tasks_path(@project), class: "btn btn-outline-dark btn-sm" %>
+                <%= link_to 'add a new task', new_project_task_path(@project), class: "btn btn-primary btn-sm" %>
 
-    by defauls link_to is a get method, delete is delete method, so I have to specify it
-    the one before path is always the helper, so the first one in the rails routes
-
-    I also wanna ask the user if he wants to delete the project -> data: ...
-<%
-=end%>
-
-<h1>Concrete one project </h1>
-<p>
-    <strong>Project title:</strong>
-    <%= link_to @project.title, project_tasks_path(@project), class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'add a new task', new_project_task_path(@project), class: "btn btn-primary btn-sm" %>
-
-</p>
-<%
-=begin%>
-    <p>  
-        <strong>Position: </strong>
-        <%= @project.position %>
-    </p>   
-    <%
-=end%>
-
-<p>
-    
-    
-    <p><strong>Tasks of my project:</strong></p>   
-    <% @project.tasks.each do |task|%>
-    <p><strong>Task: </strong> <%= task.title%></p>
-    <%
-=begin%>
-    <p><strong>Task description: </strong> <%= task.description%></p> 
-    <%
-=end%>
-    <% end %>
-</p>
-
-
-<%= link_to 'back to projects', dashboard_path, class: "btn btn-dark btn-sm" %> 
-<%= link_to 'edit project', edit_project_path(@project), class: "btn btn-primary btn-sm" %> 
-<%= link_to 'delete project', project_path(@project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
-
+            </p>
+                <p><strong>Tasks of my project:</strong></p>   
+                <% @project.tasks.each do |task|%>
+                <p><strong>Task: </strong> <%= task.title%></p>
+                <% end %>
+            </p>
+            <%= link_to 'back to projects', dashboard_path, class: "btn btn-dark btn-sm" %> 
+            <%= link_to 'edit project', edit_project_path(@project), class: "btn btn-primary btn-sm" %> 
+            <%= link_to 'delete project', project_path(@project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+        </div>
+    </div>
+</div>

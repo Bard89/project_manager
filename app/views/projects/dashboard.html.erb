@@ -1,16 +1,6 @@
-<%
-=begin%>
- maybe I wanna have a link to the new page in my index page
- links are similiar to the redirect functionality in principle
-
- and also to the show page of the project
- when I don't have to use just the string as a visible link
-<%
-=end%>
-
 <div class="container">
     <div class+="row justify-content-center">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
             <div>
                 <%= form_tag dashboard_path, class:"form-inline", method: :get do %>
                 <%= text_field_tag :query,
@@ -27,11 +17,10 @@
                 <h2>My projects: <%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> </h2>
                 <br>
             </div>
-            
             <div id="projects">
                 <% @projects.each do |project| %>
                     <p>
-                        <strong>Project title: </strong><%= link_to highlight(project.title, params[:query]), project_path(project), class: "btn btn-outline-dark btn-sm"%>
+                        <strong>Title: </strong><%= link_to highlight(project.title, params[:query]), project_path(project), class: "btn btn-outline-dark btn-sm"%>
                         <strong>Position: </strong> <%= project.position%>
                         <%= link_to 'delete', project_path(project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
                     </p>
@@ -41,23 +30,6 @@
                 <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
                 <%== pagy_bootstrap_nav(@pagy) %>
             </div>  
-
-            <%
-=begin%>
- <%=@results%>
-
-            <div id="">
-                <% @results.each do |result| %>
-                    <p>
-                        <%=result.title%>
-                        here
-                    </p>
-                <% end %>
-            </div> 
-<%
-=end%>
-
-
         </div>
     </div>
 </div>
