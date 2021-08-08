@@ -27,7 +27,7 @@
                     <% if @task.file.image? %>
                         <%= image_tag url_for(@task.file)%></p>
                     <% else %>
-                        <% if @task.file.present? %>
+                        <% if @task.file.attached? %>
                             File Uploaded
                         <% else %>
                             No file added.

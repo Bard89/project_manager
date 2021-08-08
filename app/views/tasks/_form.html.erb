@@ -6,9 +6,13 @@
                 <%=f.input :description %>
                 <%=f.input :is_done, as: :boolean %>
                 <%=f.input :file, as: :file %>
-                <div class="custom-control custom-checkbox">
+
+                <% if @task.file.attached? %>
+                    <%= f.input :remove_file, as: :boolean %>
+                <% end %>
+                <div class="form-check">
                     <% Tag.where(user_id:current_user).each do |tag| %>
-                        <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
+                        <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id), class: "form-check-input" %>
                         <span class="badge badge-pill badge-info"><%= tag.title %></span>
                         <br />
                     <% end %>
