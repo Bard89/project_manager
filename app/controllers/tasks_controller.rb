@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :find_project, only: [:index, :index_done, :index_not_done,  :new, :create, :edit]
-    before_action :find_task, only: [:update_status, :update_status_show, :show, :edit, :update, :destroy] 
+    before_action :find_task, only: [:update_status, :update_status_done, :update_status_not_done, :update_status_show, :show, :edit, :update, :destroy] 
     
     def index
         @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id)))
@@ -23,14 +23,24 @@ class TasksController < ApplicationController
         end
     end
 
+    def update_status_show
+        update_status_action
+        redirect_to project_task_path(@task.project, @task)
+    end
+
     def update_status
-        @task.is_done ? @task.update(is_done: false) : @task.update(is_done: true)
+        update_status_action
         redirect_to project_tasks_path(@task.project)
     end
 
-    def update_status_show
-        @task.is_done ? @task.update(is_done: false) : @task.update(is_done: true)
-        redirect_to project_task_path(@task.project, @task)
+    def update_status_done
+        update_status_action
+        redirect_to index_done_project_tasks_path(@task.project)
+    end
+
+    def update_status_not_done
+        update_status_action
+        redirect_to index_not_done_project_tasks_path(@task.project)
     end
 
     def show
@@ -92,5 +102,9 @@ class TasksController < ApplicationController
 
     def tag_params
         params.require(:tag).permit(:title)
+    end
+
+    def update_status_action
+        @task.is_done ? @task.update(is_done: false) : @task.update(is_done: true)
     end
 end

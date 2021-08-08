@@ -16,7 +16,7 @@ class TaskPolicy < ApplicationPolicy
   def show?
     user_is_owner_or_admin?
   end
-
+  
   def update?
     user_is_owner_or_admin?
   end
@@ -33,6 +33,13 @@ class TaskPolicy < ApplicationPolicy
     user_is_owner_or_admin?
   end
 
+  def update_status_done?
+    user_is_owner_or_admin?
+  end
+
+  def update_status_not_done?
+    user_is_owner_or_admin?
+  end
   private
 
   def user_is_owner_or_admin?
