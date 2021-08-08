@@ -71,7 +71,7 @@ class TasksController < ApplicationController
 
     def update
         
-        if @task.update(task_params) && @task.tag_ids = params[:task][:tag_ids]
+        if @task.update(task_params)
             flash[:success] = "Object was successfully updated"
             redirect_to project_task_path(@task.project, @task)
         else
