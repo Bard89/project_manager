@@ -16,6 +16,10 @@ Rails.application.routes.draw do
         get :index_done
         get :index_not_done
       end
+      member do
+        patch :update_status
+        patch :update_status_show
+      end
     end
   end
   resources :tasks, only: [:destroy]
