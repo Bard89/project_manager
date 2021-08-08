@@ -57,7 +57,7 @@ class TasksController < ApplicationController
         @task.project = @project
         @task.user = current_user
         authorize @task
-        if @task.save && @task.update(task_params)
+        if @task.save && @task.update(task_params) || @task.tag_ids = params[:task][:tag_ids]
             flash[:success] = "Task successfully created"
             redirect_to project_task_path(@project, @task)
         else
@@ -70,8 +70,7 @@ class TasksController < ApplicationController
     end
 
     def update
-        
-        if @task.update(task_params)
+        if @task.update(task_params) || @task.tag_ids = params[:task][:tag_ids]
             flash[:success] = "Object was successfully updated"
             redirect_to project_task_path(@task.project, @task)
         else
