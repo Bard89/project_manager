@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       end
       member do
         patch :update_status
+        patch :update_status_show
       end
     end
   end

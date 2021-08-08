@@ -15,12 +15,11 @@
                     <strong>Title: </strong> <%= link_to highlight(task.title, params[:query]), project_task_path(@project, task), class: "btn btn-outline-dark btn-sm "%>
                     <%= link_to 'edit', edit_project_task_path(@project, task), class: "btn btn-primary btn-sm" %>
                     <%= link_to 'delete', task_path(task), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
-
-                    <br>
-                    <strong>Description: </strong><%= task.description %> 
-                    <br>
                     <div>
-                        <%=link_to "Change status", update_status_project_task_path(@project, task), class: "btn btn-primary btn-sm", method: :patch%>
+                        <strong>Description: </strong><%= task.description %> 
+                    </div>
+                    <div>
+                        <%=link_to "Status", update_status_project_task_path(@project, task), class: "btn btn-primary btn-sm", method: :patch%>
                         <% if task.is_done%>
                             <strong>done</strong>
                         <% else %>

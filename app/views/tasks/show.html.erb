@@ -12,11 +12,16 @@
                 <strong>Description: </strong>
                 <%= @task.description %>
             </p>  
-
-            <p>  
-                <strong>Is the task done? : </strong>
-                <%= @task.is_done %>
-            </p> 
+            <p>
+                <div>  
+                        <%=link_to "Status", update_status_show_project_task_path(@task.project, @task), class: "btn btn-primary btn-sm", method: :patch%>
+                        <% if @task.is_done%>
+                            <strong>done</strong>
+                        <% else %>
+                            <strong>not done</strong>
+                        <% end %>                        
+                </div>
+            </p>
 
             <p>
             <strong>All the assigned tags: </strong>
