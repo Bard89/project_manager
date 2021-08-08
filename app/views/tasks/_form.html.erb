@@ -1,37 +1,19 @@
-<%
-=begin%>
- this is how I generate the form for nested routes [@project, @task]
- but be careful, in the controller then needs to be acess to the @project
- or just do it in a way -> @task.project
-
-
- need to do it with [@project, @task], because I'm useing the same _form for new and edit, 
-in the nw, there is then no @task.project yet, cause it wasn't yet created  
-
-<%
-=end%>
-<%
-=begin%>
- <%= simple_form_for [@project, @task] do |f| %>
-    <%=f.input :title %>
-    <%=f.input :description %>
-    <%=f.input :is_done, as: :radio_buttons %>
-    <%=f.submit class: 'btn btn-primary'%>
-<% end %> 
-<%
-=end%>
-
-<%= simple_form_for [@project, @task] do |f| %>
-    <%=f.input :title %>
-    <%=f.input :description %>
-    <%=f.input :is_done, as: :boolean %>
-    <div class="custom-control custom-checkbox">
-        <% Tag.where(user_id:current_user).each do |tag| %>
-            <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
-            <span class="badge badge-pill badge-info"><%= tag.title %></span>
-            <br />
-        <% end %>
+<div class="container">
+    <div class+="row justify-content-center">
+        <div class="col-sm-12">
+            <%= simple_form_for [@project, @task] do |f| %>
+                <%=f.input :title %>
+                <%=f.input :description %>
+                <%=f.input :is_done, as: :boolean %>
+                <div class="custom-control custom-checkbox">
+                    <% Tag.where(user_id:current_user).each do |tag| %>
+                        <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id) %>
+                        <span class="badge badge-pill badge-info"><%= tag.title %></span>
+                        <br />
+                    <% end %>
+                </div>
+                <%=f.submit class: "btn btn-primary btn-sm"%>
+            <% end %>
+        </div>
     </div>
-
-    <%=f.submit class: "btn btn-primary btn-sm"%>
-<% end %>
+</div>

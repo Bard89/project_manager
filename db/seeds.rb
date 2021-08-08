@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 puts "Clearing database from Users and Projects and Tasks"
 # the order matters -> be careful with this -> more here: https://stackoverflow.com/questions/48739646/pgforeignkeyviolation-error-update-or-delete-on-table-xxx-violates-foreign
 TagTask.destroy_all
@@ -71,7 +63,7 @@ puts
 counter = 0
 100.times do 
     project = Project.create(
-        title: "Project #{Faker::Company.name}",
+        title: "#{Faker::Fantasy::Tolkien.poem}",
         user_id: [jana, tomas, vojtech, zeus].sample.id,
         position: rand(100)
     )
@@ -87,15 +79,15 @@ puts
 counter = 0
 500.times do 
     user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
-    task = Task.create(  #won't be created for some reason
-        title: "task #{Faker::Beer.name} ",
-        description: "task-description #{Faker::GreekPhilosophers.quote}",
-        is_done: [false, true].sample, # here is the problem, seed won't get created with is_done set to false -> because of the wrongly set validation, be careful with that boi
+    task = Task.create( 
+        title: "#{Faker::Fantasy::Tolkien.location} ",
+        description: "#{Faker::Quote.yoda}",
+        is_done: [false, true].sample,
         # attachement: file .... 
         user_id: user_id_for_project,
         project_id: Project.where(user_id: user_id_for_project).sample.id
     )
-    puts "Created taks seed id --> #{task.id} <-- with title --> #{task.title} <--"
+    puts "Created task seed id --> #{task.id} <-- with title --> #{task.title} <--"
     counter += 1
 end
 puts
@@ -109,8 +101,8 @@ counter = 0
 30.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
     tag = Tag.create(
-        title: "tag #{Faker::Music.genre} ",
-        user_id: user_id_for_tag#,
+        title: "#{Faker::Creature::Animal.name} ",
+        user_id: user_id_for_tag
     )
     puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"
     counter += 1
@@ -121,7 +113,10 @@ puts "Total number of tags seeds --> #{counter} <--"
 counter = 0
 
 1000.times do 
-    tag_task = TagTask.create(tag_id: Tag.all.ids.sample, task_id: Task.all.ids.sample
+    user_id_for_task_tag = [jana, tomas, vojtech, zeus].sample.id
+    tag_task = TagTask.create(
+        tag_id: Tag.where(user_id: user_id_for_task_tag).ids.sample,
+        task_id: Task.where(user_id: user_id_for_task_tag).ids.sample
     )
     puts "Created tag_tasks seeds id --> #{tag_task.id} <--"
     counter += 1

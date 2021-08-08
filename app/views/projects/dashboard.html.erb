@@ -1,39 +1,35 @@
-<%
-=begin%>
- maybe I wanna have a link to the new page in my index page
- links are similiar to the redirect functionality in principle
-
- and also to the show page of the project
- when I don't have to use just the string as a visible link
-<%
-=end%>
-
 <div class="container">
-    <div class+="row justify-content-center">
-        <div class="col-sm-8">
+    <div class="row justify-content-center">
+        <div class="col-12">
             <div>
-                <%= form_tag dashboard_path, method: :get do %>
+                <%= form_tag dashboard_path, class:"form-inline", method: :get do %>
                 <%= text_field_tag :query,
                     params[:query],
-                    class: "form-control",
+                    class: "form-control mr-sm-2",
                     placeholder: "Find a project"
                 %>
-                <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+                <%= submit_tag "Search", class: "btn btn-outline-primary my-2 my-sm-0" %>
                 <% end %>
                 <br>
             </div>
 
             <div>
-                <h1>My projects <%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> </h1>
+                <h2>My projects: <%= link_to "Create a new project", new_project_path, class: "btn btn-primary" %> </h2>
                 <br>
             </div>
-            
             <div id="projects">
                 <% @projects.each do |project| %>
                     <p>
-                        <strong>Project title: </strong><%= link_to highlight(project.title, params[:query]), project_path(project), class: "btn btn-outline-dark btn-sm"%>
-                        <strong>Position: </strong> <%= project.position%>
-                        <%= link_to 'delete', project_path(project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+                        <div class="row justify-content-left">
+                        <div class="col-6">
+                                <strong>Title: </strong><%= link_to highlight(project.title, params[:query]), project_path(project), class: "btn btn-outline-dark btn-sm"%>
+                                <%= link_to 'delete', project_path(project), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Are ty jsi you sure to delete? That's very final decisin you know ... 🧐 "} %>
+                            </div>
+                            <div class="col-2">
+                                <strong>Position: </strong> <%= project.position%>
+                            </div>
+
+                            </div>
                     </p>
                 <% end %>
             </div>
@@ -41,24 +37,6 @@
                 <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
                 <%== pagy_bootstrap_nav(@pagy) %>
             </div>  
-
-            <%
-=begin%>
- <%=@results%>
-
-            <div id="">
-                <% @results.each do |result| %>
-                    <p>
-                        <%=result.title%>
-                        here
-                    </p>
-                <% end %>
-            </div> 
-<%
-=end%>
-
-
         </div>
     </div>
 </div>
-

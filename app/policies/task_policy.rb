@@ -4,7 +4,7 @@ class TaskPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        scope.where(user_id: user).order(created_at: :desc) # unfortunatelly I can't inser # Task.where(project_id: @project.id # here
+        scope.where(user_id: user).order(created_at: :desc)
       end
     end
   end

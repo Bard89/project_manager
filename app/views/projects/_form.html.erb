@@ -1,13 +1,11 @@
-<%= simple_form_for @project do |f| %>
-    <%
-=begin%>
-<%=f.label :title %>
-    <%=f.text_field :title %>
-    <%=f.number_field :position %>     
-<%
-=end%>
-    
-    <%=f.input :title %>
-    <%=f.input :position %>
-    <%=f.submit %>
-<% end %>
+<div class="container">
+    <div class+="row justify-content-center">
+        <div class="col-sm-12">
+            <%= simple_form_for @project do |f| %>  
+            <%=f.input :title %>
+            <%=f.input :position %>
+            <%=f.submit %>
+        <% end %>
+        </div>
+    </div>
+</div>
