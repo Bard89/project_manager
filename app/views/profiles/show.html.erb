@@ -1,17 +1,18 @@
-<h1>User profile</h1>
 
-<p>
-    <strong>User name:</strong>
-    <%= @user.first_name%> <%= @user.last_name%>
-</p>
-<p>
-    <strong>User name:</strong>
-    <%= @user.email%>
-</p>
- <%= link_to "Edit user", edit_user_registration_path, class: "btn btn-primary" %>
-<%
-=begin%>
- <p>in edit user is then cancel my account option</p> 
-<%
-=end%>
+<div class="container">
+    <div class+="row justify-content-center">
+        <div class="col-sm-12">
+            <h1>User profile</h1>
+                <p>
+                    <strong>User name:</strong>
+                    <%= @user.first_name%> <%= @user.last_name%>
+                </p>
+                <p>
+                    <strong>User name:</strong>
+                    <%= @user.email%>
+                </p>
+                <%= link_to "Edit user", edit_user_registration_path, class: "btn btn-primary" %>
+        </div>
+    </div>
+</div>
 
