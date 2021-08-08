@@ -19,8 +19,14 @@
                     <br>
                     <strong>Description: </strong><%= task.description %> 
                     <br>
-                    <strong>Change status?: </strong><%=link_to "status", update_status_project_task_path(@project, task), method: :patch%>
-                    <strong>Is task done?: </strong><%= task.is_done %> 
+                    <div>
+                        <%=link_to "Change status", update_status_project_task_path(@project, task), class: "btn btn-primary btn-sm", method: :patch%>
+                        <% if task.is_done%>
+                            <strong>done</strong>
+                        <% else %>
+                            <strong>not done</strong>
+                        <% end %>                        
+                    </div>
                     <% task.tags.each do |task_tag| %>
                         <span class="badge badge-pill badge-info"> <%= task_tag.title %></span>
                     <% end %>

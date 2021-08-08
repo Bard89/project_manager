@@ -24,25 +24,25 @@ class TasksController < ApplicationController
     end
 
     def update_status
-        @task.is_done ? @task.update(is_done: false) : @task.update(is_done: true)
-        # @task.update(is_done: true)
-        redirect_to project_tasks_path(@task.project)
+        # @task.is_done ? @task.update(is_done: false) : @task.update(is_done: true)
+        # # @task.update(is_done: true)
+        # redirect_to project_tasks_path(@task.project)
 
-        # if @task.is_done
-        #     if @task.update(is_done: "false")
-        #         flash[:success] = "Object was successfully updated" #to #{@task.is_done ? "done" : "not done"}"
-        #         redirect_to project_tasks_path(@task.project)
-        #     else
-        #         flash[:error] = "Something went wrong"
-        #     end
-        # else
-        #     if @task.update(is_done: true)
-        #         flash[:success] = "Object was successfully updated" #to #{@task.is_done ? "done" : "not done"}"
-        #         redirect_to project_tasks_path(@task.project)
-        #     else
-        #         flash[:error] = "Something went wrong"
-        #     end
-        # end
+        if @task.is_done
+            if @task.update(is_done: false)
+                flash[:success] = "Object was successfully updated" #to #{@task.is_done ? "done" : "not done"}"
+                redirect_to project_tasks_path(@task.project)
+            else
+                flash[:error] = "Something went wrong"
+            end
+        else
+            if @task.update(is_done: true)
+                flash[:success] = "Object was successfully updated" #to #{@task.is_done ? "done" : "not done"}"
+                redirect_to project_tasks_path(@task.project)
+            else
+                flash[:error] = "Something went wrong"
+            end
+        end
     end
 
     def show
