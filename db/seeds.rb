@@ -77,7 +77,7 @@ puts "Total number of project seeds --> #{counter} <--"
 puts
 puts
 counter = 0
-500.times do 
+700.times do 
     user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
     task = Task.create( 
         title: "#{Faker::Fantasy::Tolkien.location} ",
@@ -98,10 +98,10 @@ puts
 
 counter = 0
 
-30.times do 
+25.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
     tag = Tag.create(
-        title: "#{Faker::Creature::Animal.name} ",
+        title: "#{Faker::Team.creature} ",
         user_id: user_id_for_tag
     )
     puts "Created tags seed id --> #{tag.id} <-- with title --> #{tag.title} <--"

@@ -14,7 +14,7 @@ gem 'sass-rails'#, '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks'#, '~> 5'
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'#, '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -37,7 +37,8 @@ gem 'faker'
 # for authorisation
 gem 'pundit'
 
-
+# for view (alternative to ERB)
+gem 'slim'
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
