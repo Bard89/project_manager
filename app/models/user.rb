@@ -5,6 +5,6 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
   has_many :projects, dependent: :destroy
   has_many :tasks, dependent: :destroy
-  has_many :tags
+  has_many :tags, dependent: :destroy
 
 end
