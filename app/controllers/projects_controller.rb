@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
 
     def update
         if @project.update(project_params)
-            flash[:success] = "Object was successfully updated"
+            flash[:success] = "Project was successfully updated"
             redirect_to project_path(@project)
         else
             flash[:error] = "Something went wrong"
@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
 
     def destroy
         @project.destroy
+        flash[:success] = "Project successfully deleted"
         redirect_to dashboard_path
     end
     
