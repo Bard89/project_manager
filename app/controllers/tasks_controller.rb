@@ -58,12 +58,12 @@ class TasksController < ApplicationController
         @task.user = current_user
         authorize @task
         
-        if @task.save || params[:task][:tag_ids]
+        if @task.save || params[:task][:tag_ids] # && @task.update(task_params) 
             @task.tag_ids = params[:task][:tag_ids]
             flash[:success] = "Task successfully created"
             redirect_to project_task_path(@project, @task)
         else
-            flash[:error] = "Something went wrong"
+            flash.now[:error] = "Something went wrong"
             render 'new'
         end
     end
@@ -84,6 +84,7 @@ class TasksController < ApplicationController
 
     def destroy
         @task.destroy
+        flash[:success] = "Object was successfully deleted"
         redirect_to project_tasks_path(@task.project)
     end
     
