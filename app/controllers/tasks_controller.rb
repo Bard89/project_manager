@@ -74,7 +74,7 @@ class TasksController < ApplicationController
     def update
         if @task.update(task_params) || params[:task][:tag_ids]
             @task.tag_ids = params[:task][:tag_ids]
-            flash[:success] = "Object was successfully updated"
+            flash[:success] = "Task was successfully updated"
             redirect_to project_task_path(@task.project, @task)
         else
             flash[:error] = "Something went wrong"
@@ -84,7 +84,7 @@ class TasksController < ApplicationController
 
     def destroy
         @task.destroy
-        flash[:success] = "Object was successfully deleted"
+        flash[:success] = "Task was successfully deleted"
         redirect_to project_tasks_path(@task.project)
     end
     

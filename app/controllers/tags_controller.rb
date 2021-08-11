@@ -42,6 +42,7 @@ class TagsController < ApplicationController
 
     def destroy
         @tag.destroy
+        flash[:success] = "Object was successfully deleted"
         redirect_to tags_path
     end
 
