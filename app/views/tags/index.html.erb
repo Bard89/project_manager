@@ -27,6 +27,11 @@
             </div>
             </p>
         <% end %>
+        <%
+=begin%>
+ <%= link_to "back", :back, class: "btn btn-dark btn-sm" %> 
+<%
+=end%>
         <%= link_to 'back to projects', dashboard_path, class: "btn btn-dark btn-sm" %> 
         <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
         <%== pagy_bootstrap_nav(@pagy) %>
