@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :find_project, only: [:index, :index_done, :index_not_done,  :new, :create, :edit]
-    before_action :find_task, only: [:update_status, :update_status_done, :update_status_not_done, :update_status_show, :show, :edit, :update, :destroy] 
+    before_action :find_task, only: [:update_status, :update_status_done, :update_status_not_done, :update_status_show, :show, :edit, :update, :destroy, :destroy_attached_file] 
     
     def index
         #  from medium article -> https://medium.com/@bretdoucette/n-1-queries-and-how-to-avoid-them-a12f02345be5
@@ -93,6 +93,16 @@ class TasksController < ApplicationController
         @task.destroy
         flash[:success] = "Task was successfully deleted"
         redirect_to project_tasks_path(@task.project)
+    end
+
+    def destroy_attached_file
+        if !@task.file.purge # this returns nil but it deletes the file attachement
+            flash[:success] = "File successfully deleted"
+            redirect_to edit_project_task_path(@task.project, @task)
+        else
+            flash[:error] = "Can't delete file, no file attached"
+            redirect_to edit_project_task_path(@task.project, @task)
+        end
     end
     
     private

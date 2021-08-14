@@ -3,15 +3,39 @@
 <div class="container">
     <div class+="row justify-content-center">
         <div class="col-sm-12">
+            <div>
+                <p>
+                <br>
+                <% if @task.file.attached? %>
+                        <% if @task.file.image? %>
+                            <%= image_tag url_for(@task.file)%></p>
+                        <% else %>
+                            File Attached
+                        <% end%>
+                        <%= link_to 'delete file', destroy_attached_file_project_task_path, method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Are ty jsi you sure to delete the file? That's very final decisin you know ... 🧐 "} %>
+                    <% else %>
+                        No file added.
+                <% end%>
+                
+            </div>
+
             <%= simple_form_for [@project, @task] do |f| %>
                 <%=f.input :title %>
                 <%=f.input :description %>
                 <%=f.input :is_done, as: :boolean %>
-                <%=f.input :file, as: :file %>
+
+                <%
+=begin%>
+ <% if @task.file.attached? %>
+                    <%= f.input :remove_file, as: :boolean %>
+                <% end %> 
+<%
+=end%>  
 
                 <% if @task.file.attached? %>
-                    <%= f.input :remove_file, as: :boolean %>
+                    To replace current file: 
                 <% end %>
+                <%=f.input :file, as: :file %>
                 <div class="form-check">
                     <% Tag.where(user_id:current_user).each do |tag| %>
                         <%= check_box_tag "task[tag_ids][]", tag.id, @task.tag_ids.include?(tag.id), class: "form-check-input" %>
