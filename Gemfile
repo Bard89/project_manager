@@ -63,7 +63,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  # n+1 
+  # n+1 problems  
   gem 'bullet'
 end
 

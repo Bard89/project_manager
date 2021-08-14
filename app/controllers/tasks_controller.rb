@@ -3,7 +3,8 @@ class TasksController < ApplicationController
     before_action :find_task, only: [:update_status, :update_status_done, :update_status_not_done, :update_status_show, :show, :edit, :update, :destroy] 
     
     def index
-        @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id)))
+        # The Includes method uses a concept called ‘Eager Loading.’ In our example, eager loading works by preloading every comment for every article beforehand in a temporary cache stored in memory. This allows us to iterate through all the articles and call ‘.comments’ on them without having to ping the database over and over again.
+        @pagy, @tasks = pagy(policy_scope(Task.includes([:tag_tasks]).includes([:tags]).where(project_id: @project.id)))
         if params[:query].present?
             @pagy, @tasks = pagy(policy_scope(Task).search_by_title(params[:query]))
         end
