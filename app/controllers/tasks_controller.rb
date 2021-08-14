@@ -96,7 +96,7 @@ class TasksController < ApplicationController
     end
 
     def destroy_attached_file
-        if !@task.file.purge # this returns nil but it deleteds the file attachement
+        if !@task.file.purge # this returns nil but it deletes the file attachement
             flash[:success] = "File successfully deleted"
             redirect_to edit_project_task_path(@task.project, @task)
         else
