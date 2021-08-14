@@ -25,6 +25,10 @@ class TaskPolicy < ApplicationPolicy
     user_is_owner_or_admin?
   end
 
+  def destroy_attached_file?
+    user_is_owner_or_admin?
+  end
+
   def update_status?
     user_is_owner_or_admin?
   end

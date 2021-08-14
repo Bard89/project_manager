@@ -22,6 +22,8 @@ Rails.application.routes.draw do
         patch :update_status
         patch :update_status_done
         patch :update_status_not_done
+
+        delete :destroy_attached_file
       end
     end
   end
