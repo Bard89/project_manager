@@ -12,7 +12,7 @@ puts "---Creating seeds"
 puts "..."
 counter = 0
 puts
-jana = User.create(
+jana = User.create!( # without the --> ! <-- would not give us any feedback
     first_name: "Jana",
     last_name: "M.",
     email: "jana@proman.com",
@@ -22,7 +22,7 @@ jana = User.create(
 counter += 1
 puts "User seed named --> #{jana.first_name} <-- created"
 
-tomas = User.create(
+tomas = User.create!(
     first_name: "Tomas",
     last_name: "J.",
     email: "tomas@proman.com",
@@ -33,7 +33,7 @@ counter += 1
 puts "User seed named --> #{tomas.first_name} <-- created"
 
 
-vojtech = User.create(
+vojtech = User.create!(
     first_name: "Vojtech",
     last_name: "M.",
     email: "vojtech@proman.com",
@@ -46,7 +46,7 @@ puts
 puts "Total number of user seeds --> #{counter} <--"
 
 # next as the admin, with great power comes great responsibility
-zeus = User.create(
+zeus = User.create!(
     first_name: "Zeus",
     last_name: "Admin",
     email: "zeus@proman.com",
@@ -62,7 +62,7 @@ puts
 puts 
 counter = 0
 100.times do 
-    project = Project.create(
+    project = Project.create!(
         title: "#{Faker::Fantasy::Tolkien.poem}",
         user_id: [jana, tomas, vojtech, zeus].sample.id,
         position: rand(100)
@@ -79,7 +79,7 @@ puts
 counter = 0
 700.times do 
     user_id_for_project = [jana, tomas, vojtech, zeus].sample.id
-    task = Task.create( 
+    task = Task.create!( 
         title: "#{Faker::Fantasy::Tolkien.location} ",
         description: "#{Faker::Quote.yoda}",
         is_done: [false, true].sample,
@@ -100,7 +100,7 @@ counter = 0
 
 25.times do 
     user_id_for_tag = [jana, tomas, vojtech, zeus].sample.id
-    tag = Tag.create(
+    tag = Tag.create!(
         title: "#{Faker::Team.creature} ",
         user_id: user_id_for_tag
     )
@@ -114,7 +114,7 @@ counter = 0
 
 1000.times do 
     user_id_for_task_tag = [jana, tomas, vojtech, zeus].sample.id
-    tag_task = TagTask.create(
+    tag_task = TagTask.create!(
         tag_id: Tag.where(user_id: user_id_for_task_tag).ids.sample,
         task_id: Task.where(user_id: user_id_for_task_tag).ids.sample
     )
