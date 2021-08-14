@@ -1,6 +1,16 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable        = true 
+    Bullet.alert         = true # allert on error
+    Bullet.bullet_logger = true # writes in logs whn it happens
+    Bullet.console       = true # 
+  # Bullet.growl         = true
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true # footer, that's ehat you'll see bottom left -> 
+  end
+
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
