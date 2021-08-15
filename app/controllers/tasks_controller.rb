@@ -79,8 +79,12 @@ class TasksController < ApplicationController
     end
 
     def update
-        if @task.update(task_params) || params[:task][:tag_ids]
-            @task.tag_ids = params[:task][:tag_ids]
+        if @task.update(task_params)# || params[:task][:tag_ids]
+            # @task.tag_ids = params[:task][:tag_ids]
+
+            # new from simple form
+
+
             flash[:success] = "Task was successfully updated"
             redirect_to project_task_path(@task.project, @task)
         else
