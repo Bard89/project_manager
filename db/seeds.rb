@@ -1,5 +1,5 @@
 puts "Clearing database from Users and Projects and Tasks"
-# the order matters -> be careful with this -> more here: https://stackoverflow.com/questions/48739646/pgforeignkeyviolation-error-update-or-delete-on-table-xxx-violates-foreign
+
 TagTask.destroy_all
 Tag.destroy_all
 Task.destroy_all
@@ -12,9 +12,8 @@ puts "---Creating seeds"
 puts "..."
 counter = 0
 puts
-# If we need an ActiveRecord method to raise an exception instead of a false value in case of failure, we can add ! to them.
-# https://wikitechy.com/tutorials/ruby-on-rails/activerecord-bang-methods-in-ruby-on-rails
-jana = User.create!( # without the --> ! <-- would not give us any feedback
+
+jana = User.create!(
     first_name: "Jana",
     last_name: "M.",
     email: "jana@proman.com",

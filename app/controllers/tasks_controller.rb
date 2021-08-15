@@ -3,13 +3,6 @@ class TasksController < ApplicationController
     before_action :find_task, only: [:update_status, :update_status_done, :update_status_not_done, :update_status_show, :show, :edit, :update, :destroy, :destroy_attached_file] 
     
     def index
-        #  from medium article -> https://medium.com/@bretdoucette/n-1-queries-and-how-to-avoid-them-a12f02345be5
-        # The Includes method uses a concept called ‘Eager Loading.’ In our example, eager loading works by
-        # preloading every comment for every article beforehand in a temporary cache stored in memory. This allows us to iterate through all 
-        # the articles and call ‘.comments’ on them without having to ping the database over and over again.
-
-        # basically I have to go through the tag_tasks, because I have many to many through association, so the joint is throuh the tag-tasks table 
-        # the querry is possible to see in the server window of the terminal 
         @pagy, @tasks = pagy(policy_scope(Task.includes([:tag_tasks]).includes([:tags]).where(project_id: @project.id)))
         if params[:query].present?
             @pagy, @tasks = pagy(policy_scope(Task).includes([:tag_tasks]).includes([:tags]).search_by_title(params[:query]))
@@ -65,7 +58,7 @@ class TasksController < ApplicationController
         @task.user = current_user
         authorize @task
         
-        if @task.save || params[:task][:tag_ids] # && @task.update(task_params) 
+        if @task.save || params[:task][:tag_ids]
             @task.tag_ids = params[:task][:tag_ids]
             flash[:success] = "Task successfully created"
             redirect_to project_task_path(@project, @task)

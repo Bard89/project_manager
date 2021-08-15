@@ -24,17 +24,10 @@
                 <%=f.input :description %>
                 <%=f.input :is_done, as: :boolean %>
 
-                <%
-=begin%>
- <% if @task.file.attached? %>
-                    <%= f.input :remove_file, as: :boolean %>
-                <% end %> 
-<%
-=end%>  
-
                 <% if @task.file.attached? %>
                     To replace current file: 
                 <% end %>
+                
                 <%=f.input :file, as: :file %>
                 <%=f.association :tags, as: :check_boxes, collection: Tag.where(user_id:current_user)%>
                 

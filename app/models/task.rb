@@ -4,9 +4,6 @@ class Task < ApplicationRecord
   has_many :tag_tasks, dependent: :destroy ##
   has_many :tags, through: :tag_tasks
 
-  # to be able to use strong params for associations # not working for some reason ... 
-  # accepts_nested_attributes_for :tags
-
   # for the active storage
   has_one_attached:file
 
