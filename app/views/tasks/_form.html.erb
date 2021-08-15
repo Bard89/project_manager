@@ -10,11 +10,11 @@
                         <% if @task.file.image? %>
                             <%= image_tag url_for(@task.file)%></p>
                         <% else %>
-                            File Attached
+                            File attached
                         <% end%>
                         <%= link_to 'delete file', destroy_attached_file_project_task_path, method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Are ty jsi you sure to delete the file? That's very final decisin you know ... 🧐 "} %>
-                    <% else %>
-                        No file added.
+                <% else %>
+                    No file added.
                 <% end%>
                 
             </div>
