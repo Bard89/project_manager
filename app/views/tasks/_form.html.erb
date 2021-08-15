@@ -36,7 +36,7 @@
                     To replace current file: 
                 <% end %>
                 <%=f.input :file, as: :file %>
-                <%=f.association :tags, as: :check_boxes %>
+                <%=f.association :tags, as: :check_boxes, collection: Tag.where(user_id:current_user)%>
                 <%
 =begin%>
  <div class="form-check">
