@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-    before_action :find_project, only: [:index, :index_done, :index_not_done,  :new, :create, :edit]
+    before_action :find_project, only: [:index, :index_done, :index_not_done, :new, :create, :edit]
     before_action :find_task, only: [:update_status, :update_status_done, :update_status_not_done, :update_status_show, :show, :edit, :update, :destroy, :destroy_attached_file] 
     
     def index
@@ -117,7 +117,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:title, :description, :is_done, :file, :remove_file)
+        params.require(:task).permit(:title, :description, :is_done, :file, :remove_file) #, tags_attributes: :id)
     end
 
     def tag_params

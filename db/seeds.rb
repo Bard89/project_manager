@@ -12,6 +12,8 @@ puts "---Creating seeds"
 puts "..."
 counter = 0
 puts
+# If we need an ActiveRecord method to raise an exception instead of a false value in case of failure, we can add ! to them.
+# https://wikitechy.com/tutorials/ruby-on-rails/activerecord-bang-methods-in-ruby-on-rails
 jana = User.create!( # without the --> ! <-- would not give us any feedback
     first_name: "Jana",
     last_name: "M.",
