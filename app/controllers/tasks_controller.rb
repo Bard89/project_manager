@@ -3,17 +3,20 @@ class TasksController < ApplicationController
     before_action :find_task, only: [:update_status, :update_status_done, :update_status_not_done, :update_status_show, :show, :edit, :update, :destroy, :destroy_attached_file] 
     
     def index
-        @pagy, @tasks = pagy(policy_scope(Task.includes([:tag_tasks]).includes([:tags]).where(project_id: @project.id)))
+        @pagy, @tasks = pagy(policy_scope(Task.includes([:tag_tasks]).includes(:tags).where(project_id: @project.id))) # jenm jedno includes s :, : 
         if params[:query].present?
             @pagy, @tasks = pagy(policy_scope(Task).includes([:tag_tasks]).includes([:tags]).search_by_title(params[:query]))
         end
+        # zde by sel dat param is done, not done a podle toho potom filtruji tasks
+        # potom bych mel jenom jednu sablonu
     end
 
-    def index_done
+    def index_done # neni DRY # pridat .includes, bullet asi nevidel asociaci, potreba testovat se seeds
         @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true)))
         if params[:query].present?
-            @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true)).search_by_title(params[:query]))
+            @pagy, @tasks = pagy(policy_scope(Task.where(project_id: @project.id, is_done: true)).search_by_title(params[:query])) # tzn to sear by mel bytve stejnem kroku jako ten scope
         end
+        # reseni -> ulozim si vysledek policy scope, zeptam se na querry, znvy do promeny ulozim policy scope se search a nakonci zavolam pagy
     end
 
     def index_not_done
@@ -28,7 +31,7 @@ class TasksController < ApplicationController
         redirect_to project_task_path(@task.project, @task)
     end
 
-    def update_status
+    def update_status # da se refactornout na to ze by to redirectlo back, nastavim tam fallback cestu 
         update_status_action
         redirect_to project_tasks_path(@task.project)
     end
@@ -105,12 +108,12 @@ class TasksController < ApplicationController
     end
 
     def find_task
-        @task = Task.find(params[:id])
+        @task = Task.find(params[:id]) # pridam where podminku a tam dam ten current user a potom nepotrebuji pundit
         authorize @task
     end
 
     def task_params
-        params.require(:task).permit(:title, :description, :is_done, :file, :remove_file) #, tags_attributes: :id)
+        params.require(:task).permit(:title, :description, :is_done, :file, :remove_file) , #tes: :id) # vlozim hashovy klic a prazdne pole
     end
 
     def tag_params
